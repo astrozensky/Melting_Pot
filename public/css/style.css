@@ -44,6 +44,23 @@ body {
   grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] 1fr [full-end];
 }
 
+.heading-4, .heading-3, .heading-2, .heading-1 {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  color: #fff;
+}
+
+.heading-2 {
+  color: var(--color-grey-dark);
+  font-size: 2rem;
+}
+
+.heading-4 {
+  color: var(--color-grey-dark);
+  font-size: 1.4rem;
+}
+
 .header {
   background-color: var(--color-grey-light-2);
   grid-column: full-start/full-end;
@@ -209,6 +226,75 @@ body {
 
 .featured {
   grid-column: full-start/full-end;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+  margin-bottom: 2rem;
+}
+.featured__heading {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.featured__heading-accent {
+  height: 2px;
+  width: 90%;
+  display: inline-block;
+  background-color: var(--color-grey-dark);
+}
+
+.recipe__card {
+  background-color: var(--color-grey-light-2);
+  width: 100%;
+  height: 20vh;
+  padding: 2rem;
+  box-shadow: var(--shadow-primary);
+  display: grid;
+  grid-template-columns: 40% max-content;
+  grid-template-rows: 18vh;
+  column-gap: 2rem;
+  align-content: center;
+  align-items: center;
+}
+.recipe__img-container {
+  grid-column: 1/2;
+  height: 90%;
+  box-shadow: var(--shadow-primary);
+}
+.recipe__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.recipe__details {
+  grid-column: 2/3;
+  display: grid;
+  row-gap: 2vh;
+}
+.recipe__name:link, .recipe__name:visited {
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+.recipe__rating {
+  display: flex;
+  align-items: center;
+  margin-top: -1vh;
+}
+.recipe__rating-text {
+  font-size: 1.2rem;
+  color: var(--color-grey-dark);
+  margin-left: 0.5rem;
+}
+.recipe__icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: var(--color-primary);
+}
+.recipe__source {
+  font-size: 1.2rem;
+  color: var(--color-grey-dark);
 }
 
 .footer {

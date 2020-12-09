@@ -1,0 +1,23 @@
+%heading {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  color: #fff;
+}
+
+.heading-1 {
+  @extend %heading;
+}
+.heading-2 {
+  @extend %heading;
+  color: var(--color-grey-dark);
+  font-size: 2rem;
+}
+.heading-3 {
+  @extend %heading;
+}
+.heading-4 {
+  @extend %heading;
+  color: var(--color-grey-dark);
+  font-size: 1.4rem;
+}
