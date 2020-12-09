@@ -1,4 +1,54 @@
 .footer {
   background-color: var(--color-grey-dark);
   grid-column: full-start / full-end;
+  box-shadow: var(--shadow-primary);
+}
+
+.footer-nav {
+  padding: 1rem 0;
+  &__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  &__item {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link:link,
+  &__link:visited {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    text-decoration: none;
+    color: var(--color-grey-light-1);
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+  }
+
+  &__icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 1rem;
+    fill: var(--color-grey-light-1);
+  }
+}
+
+.copyright {
+  &__container {
+    background-color: var(--color-primary);
+  }
+  &__text {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    color: var(--color-grey-dark);
+  }
 }
