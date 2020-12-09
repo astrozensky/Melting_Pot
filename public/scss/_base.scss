@@ -19,6 +19,12 @@
 
   // FONT
   --font-primary: "Noto Sans JP", sans-serif;
+
+  // BOX SHADOWS
+  --shadow-primary: 0 0 1rem rgba(0, 0, 0, 0.25);
+
+  // TEXT SHADOW
+  --shadow-text: 0 0 1rem rgba(0, 0, 0, 0.9);
 }
 
 *,

@@ -1,4 +1,85 @@
 .hero {
-  background-color: darkcyan;
   grid-column: full-start / full-end;
+  background-image: linear-gradient(
+      rgba(var(--color-primary-rgb), 0.7),
+      rgba(var(--color-primary-rgb), 0.85)
+    ),
+    url(../img/hero.jpg);
+  background-position: center;
+  background-size: cover;
+
+  height: 70vh;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-primary);
+  display: grid;
+  grid-template-columns: 90vw;
+  justify-content: center;
+  align-content: center;
+}
+
+%label {
+  font-size: 2rem;
+  color: var(--color-grey-light-1);
+  text-shadow: var(--shadow-text);
+}
+
+%input {
+  width: 90%;
+  height: 10vw;
+  border: none;
+  background-color: var(--color-grey-light-2);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-primary);
+  font-family: var(--font-primary);
+  font-weight: 300;
+  padding: 0.5rem 1rem;
+  &::placeholder {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: var(--color-grey-dark);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 1.5rem rgba(var(--color-secondary-rgb), 0.9);
+  }
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 100%;
+  row-gap: 3rem;
+  align-items: center;
+  justify-items: center;
+  &__main {
+    @extend %input;
+
+    &-label {
+      @extend %label;
+    }
+  }
+  &__category {
+    @extend %input;
+    &-label {
+      @extend %label;
+    }
+  }
+  &__btn {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: #fff;
+    border: none;
+    border-radius: 10rem;
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-secondary-light-rgb), 1),
+        rgba(#fff, 0)
+      ),
+      var(--color-secondary);
+    width: 90%;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-primary);
+  }
 }

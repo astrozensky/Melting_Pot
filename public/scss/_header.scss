@@ -8,6 +8,7 @@
   align-items: center;
   position: relative;
   height: 6rem;
+  box-shadow: var(--shadow-primary);
 
   &__logo {
     height: 4rem;
@@ -66,7 +67,7 @@
     display: grid;
     grid-template-columns: 1fr;
     width: 90vw;
-    box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.25);
+    box-shadow: var(--shadow-primary);
   }
 
   &__item {
