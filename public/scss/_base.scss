@@ -1,0 +1,54 @@
+:root {
+  // COLORS
+  --color-primary: #e58e26;
+  --color-primary-rgb: 229, 142, 38;
+  --color-primary-light: #eaa653;
+  --color-primary-light-rgb: 234, 166, 83;
+  --color-primary-dark: #c17417;
+
+  --color-secondary: #1e6991;
+  --color-secondary-rgb: 30, 105, 145;
+  --color-secondary-light: #2788bb;
+  --color-secondary-light-rgb: 39, 136, 187;
+  --color-secondary-dark: #185575;
+
+  --color-grey-dark: #57452f;
+  --color-grey-light-1: #fbfaf8;
+  --color-grey-light-2: #efebe2;
+  --color-grey-light-3: #e2dbcd;
+
+  // FONT
+  --font-primary: "Noto Sans JP", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 120rem;
+
+  display: grid;
+  grid-template-columns:
+    [full-start] 1fr [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 14rem) [col-end]
+    )
+    [center-end] 1fr [full-end];
+}

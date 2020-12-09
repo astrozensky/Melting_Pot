@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amarante&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+
+    <title>Alex Strozensky &mdash; Software Developer</title>
+  </head>
+  <body class="container">
+    <header class="header">
+      <img src="img/logo.png" alt="Melting Pot Logo" class="header__logo" />
+      <button class="mobile-nav__btn" onclick="toggleNav()">
+        <span class="mobile-nav__btn-line"></span>
+        <span class="mobile-nav__btn-line"></span>
+        <span class="mobile-nav__btn-line"></span>
+      </button>
+
+      <nav class="mobile-nav hidden">
+        <ul class="mobile-nav__list">
+          <li class="mobile-nav__item">
+            <a href="#" class="mobile-nav__link">
+              <svg class="mobile-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-home"></use>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li class="mobile-nav__item">
+            <a href="#" class="mobile-nav__link">
+              <svg class="mobile-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-info-with-circle"></use>
+              </svg>
+              About
+            </a>
+          </li>
+          <li class="mobile-nav__item">
+            <a href="#" class="mobile-nav__link">
+              <svg class="mobile-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-login"></use>
+              </svg>
+              Log in
+            </a>
+          </li>
+          <li class="mobile-nav__item">
+            <a href="#" class="mobile-nav__link">
+              <svg class="mobile-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-add-user"></use>
+              </svg>
+              Sign up
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">Hero</section>
+
+    <section class="featured">Featured</section>
+
+    <footer class="footer">Footer</footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/index.js" type="text/javascript"></script>
+  </body>
+</html>

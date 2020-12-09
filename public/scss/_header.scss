@@ -1,0 +1,114 @@
+.header {
+  background-color: var(--color-grey-light-2);
+  grid-column: full-start / full-end;
+  grid-row: 1 / 2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 6rem;
+
+  &__logo {
+    height: 4rem;
+    width: auto;
+    display: block;
+    margin-left: 1rem;
+  }
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    rgba(var(--color-primary-light-rgb), 0.9),
+    rgba(var(--color-primary-rgb), 0.9)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+
+  &__btn {
+    display: grid;
+    grid-template-columns: 100%;
+    align-content: space-around;
+    height: 3rem;
+    width: 4rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s;
+    z-index: 5;
+
+    &:focus {
+      outline: none;
+      //   transform: scale(1.05);
+    }
+
+    &-line {
+      height: 2px;
+      width: 100%;
+      background-color: var(--color-grey-dark);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 90vw;
+    box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.25);
+  }
+
+  &__item {
+    background-color: var(--color-grey-light-2);
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link:link,
+  &__link:visited {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--color-grey-dark);
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+  }
+
+  &__link:focus &__item {
+    background-color: var(--color-grey-light-3);
+  }
+
+  &__icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 1rem;
+    fill: var(--color-grey-dark);
+  }
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
