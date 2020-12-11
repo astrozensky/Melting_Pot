@@ -7,17 +7,37 @@
   row-gap: 3rem;
   padding: 2rem;
 
+  @media only screen and (min-width: $bp-small) {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5rem;
+  }
+
   &__heading {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-self: center;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-column: 1 / -1;
+    }
   }
 
   &__info {
     color: var(--color-grey-dark);
     font-size: 1.6rem;
     letter-spacing: 0.1rem;
+    background-color: var(--color-grey-light-2);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-primary);
+    @media only screen and (min-width: $bp-small) {
+      grid-column: 2 / 3;
+    }
+
+    @media only screen and (min-width: $bp-xlarge) {
+      font-size: 2rem;
+    }
   }
 
   &__spoonacular-logo {
@@ -25,5 +45,17 @@
     width: 10rem;
     object-fit: contain;
     object-position: center;
+    justify-self: center;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      align-self: center;
+    }
+
+    @media only screen and (min-width: $bp-xlarge) {
+      height: 15rem;
+      width: 15rem;
+    }
   }
 }

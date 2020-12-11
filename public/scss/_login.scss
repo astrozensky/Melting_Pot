@@ -1,0 +1,95 @@
+.login {
+  background-color: var(--color-grey-light-2);
+  display: grid;
+  grid-template-columns: 90vw;
+  justify-content: center;
+  align-content: center;
+
+  box-shadow: var(--shadow-primary);
+  border-radius: 1rem;
+  margin: 5rem 5vw;
+
+  @media only screen and (min-width: $bp-small) {
+    grid-template-columns: 70vw;
+    margin: 5rem 15vw;
+  }
+  @media only screen and (min-width: $bp-xlarge) {
+    grid-template-columns: 50vw;
+    margin: 5rem 25vw;
+  }
+  @media only screen and (min-width: $bp-xxlarge) {
+    grid-template-columns: 40vw;
+    margin: 5rem 30vw;
+  }
+
+  &__heading {
+    justify-self: center;
+    padding-top: 2rem;
+    color: var(--color-grey-dark);
+    font-size: 3rem;
+  }
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 2rem;
+    row-gap: 2rem;
+  }
+  &__label {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 300;
+    justify-self: start;
+    color: var(--color-primary);
+    margin-bottom: -1rem;
+    margin-left: 0.5rem;
+  }
+
+  %input {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-primary);
+    padding: 0.5rem 1rem;
+    background-color: var(--color-grey-light-1);
+    font-family: var(--font-primary);
+    width: 100%;
+
+    &::placeholder {
+      font-family: var(--font-primary);
+    }
+  }
+  &__input-username {
+    @extend %input;
+  }
+  &__input-password {
+    @extend %input;
+  }
+  &__btn {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: #fff;
+    border: none;
+    border-radius: 10rem;
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-secondary-light-rgb), 1),
+        rgba(#fff, 0)
+      ),
+      var(--color-secondary);
+    width: 90%;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-primary);
+    transition: all 0.2s;
+
+    @media only screen and (min-width: $bp-small) {
+      font-size: 2rem;
+    }
+
+    &:focus {
+      outline: none;
+      transform: translateY(0.5rem);
+    }
+  }
+}
