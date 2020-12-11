@@ -39,9 +39,9 @@ body {
 }
 
 .container {
-  max-width: 120rem;
   display: grid;
   grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] 1fr [full-end];
+  justify-content: center;
 }
 
 .heading-4, .heading-3, .heading-2, .heading-1 {
@@ -52,13 +52,43 @@ body {
 }
 
 .heading-1 {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 100;
+}
+@media only screen and (min-width: 31.25em) {
+  .heading-1 {
+    font-size: 2.5rem;
+  }
+}
+@media only screen and (min-width: 43.75em) {
+  .heading-1 {
+    font-size: 4rem;
+  }
+}
+@media only screen and (min-width: 62.5em) {
+  .heading-1 {
+    font-size: 4.5rem;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .heading-1 {
+    font-size: 5rem;
+  }
 }
 
 .heading-2 {
   color: var(--color-grey-dark);
   font-size: 2rem;
+}
+@media only screen and (min-width: 62.5em) {
+  .heading-2 {
+    font-size: 2.5rem;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .heading-2 {
+    font-size: 3rem;
+  }
 }
 
 .heading-4 {
@@ -86,11 +116,13 @@ body {
   display: block;
   margin-left: 1rem;
 }
+@media only screen and (min-width: 75em) {
+  .header__logo {
+    margin-left: 5rem;
+  }
+}
 
 .main-nav {
-  position: fixed;
-  top: 0;
-  right: 0;
   padding-right: 2rem;
   display: flex;
   justify-content: space-between;
@@ -102,20 +134,29 @@ body {
     display: none;
   }
 }
+@media only screen and (min-width: 75em) {
+  .main-nav {
+    margin-right: 5rem;
+  }
+}
 .main-nav__list {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, max-content);
-  column-gap: 1.5rem;
-}
-.main-nav__list:hover {
-  background-color: var(--color-grey-light-3);
 }
 .main-nav__item {
   width: 100%;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   display: flex;
   justify-content: center;
+}
+@media only screen and (min-width: 50em) {
+  .main-nav__item {
+    padding: 2rem 1.5rem;
+  }
+}
+.main-nav__item:hover {
+  background-color: var(--color-grey-light-3);
 }
 .main-nav__link:link, .main-nav__link:visited {
   display: flex;
@@ -248,16 +289,45 @@ body {
     row-gap: 4vw;
   }
 }
+@media only screen and (min-width: 56.25em) {
+  .hero {
+    grid-template-columns: 70%;
+  }
+}
+@media only screen and (min-width: 62.5em) {
+  .hero {
+    margin: 4rem;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .hero {
+    grid-column: center-start/center-end;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 .hero__tagline {
   justify-self: center;
   text-transform: uppercase;
   text-shadow: var(--shadow-text);
+  text-align: center;
+  margin-bottom: 4vw;
+}
+@media only screen and (min-width: 43.75em) {
+  .hero__tagline {
+    margin-bottom: 0;
+  }
 }
 
 .search__category-label, .search__main-label {
   font-size: 2rem;
   color: var(--color-grey-light-1);
   text-shadow: var(--shadow-text);
+}
+@media only screen and (min-width: 62.5em) {
+  .search__category-label, .search__main-label {
+    font-size: 2.5rem;
+  }
 }
 
 .search__category, .search__main {
@@ -274,6 +344,11 @@ body {
 @media only screen and (min-width: 31.25em) {
   .search__category, .search__main {
     height: 6vw;
+  }
+}
+@media only screen and (min-width: 56.25em) {
+  .search__category, .search__main {
+    height: 5rem;
   }
 }
 .search__category::placeholder, .search__main::placeholder {
@@ -350,6 +425,19 @@ body {
     column-gap: 2rem;
   }
 }
+@media only screen and (min-width: 62.5em) {
+  .featured {
+    margin: 4rem;
+    margin-top: 0;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .featured {
+    grid-column: center-start/center-end;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 .featured__heading {
   justify-self: center;
   display: flex;
@@ -376,6 +464,7 @@ body {
   align-content: center;
   align-items: center;
   letter-spacing: 0.1rem;
+  position: relative;
 }
 @media only screen and (min-width: 43.75em) {
   .recipe__card {
@@ -409,10 +498,16 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.5rem;
+  right: 1.5rem;
   padding: 0.5rem;
   box-shadow: var(--shadow-primary);
+}
+@media only screen and (min-width: 31.25em) {
+  .recipe__like {
+    top: 2rem;
+    right: 2rem;
+  }
 }
 .recipe__like-btn {
   border: none;

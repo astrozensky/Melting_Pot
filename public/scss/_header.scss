@@ -18,13 +18,14 @@
     width: auto;
     display: block;
     margin-left: 1rem;
+
+    @media only screen and (min-width: $bp-xxlarge) {
+      margin-left: 5rem;
+    }
   }
 }
 
 .main-nav {
-  position: fixed;
-  top: 0;
-  right: 0;
   padding-right: 2rem;
   display: flex;
   justify-content: space-between;
@@ -35,22 +36,29 @@
     display: none;
   }
 
+  @media only screen and (min-width: $bp-xxlarge) {
+    margin-right: 5rem;
+  }
+
   &__list {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4, max-content);
-    column-gap: 1.5rem;
-
-    &:hover {
-      background-color: var(--color-grey-light-3);
-    }
   }
 
   &__item {
     width: 100%;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     display: flex;
     justify-content: center;
+
+    @media only screen and (min-width: $bp-medium) {
+      padding: 2rem 1.5rem;
+    }
+
+    &:hover {
+      background-color: var(--color-grey-light-3);
+    }
   }
 
   &__link:link,

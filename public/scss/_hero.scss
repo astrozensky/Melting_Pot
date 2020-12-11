@@ -21,10 +21,30 @@
     row-gap: 4vw;
   }
 
+  @media only screen and (min-width: $bp-large) {
+    grid-template-columns: 70%;
+  }
+
+  @media only screen and (min-width: $bp-xlarge) {
+    margin: 4rem;
+  }
+
+  @media only screen and (min-width: $bp-xxlarge) {
+    grid-column: center-start / center-end;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   &__tagline {
     justify-self: center;
     text-transform: uppercase;
     text-shadow: var(--shadow-text);
+    text-align: center;
+    margin-bottom: 4vw;
+
+    @media only screen and (min-width: $bp-small) {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -32,6 +52,10 @@
   font-size: 2rem;
   color: var(--color-grey-light-1);
   text-shadow: var(--shadow-text);
+
+  @media only screen and (min-width: $bp-xlarge) {
+    font-size: 2.5rem;
+  }
 }
 
 %input {
@@ -47,6 +71,10 @@
 
   @media only screen and (min-width: $bp-xsmall) {
     height: 6vw;
+  }
+
+  @media only screen and (min-width: $bp-large) {
+    height: 5rem;
   }
 
   &::placeholder {

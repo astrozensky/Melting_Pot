@@ -7,13 +7,37 @@
 
 .heading-1 {
   @extend %heading;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 100;
+
+  @media only screen and (min-width: $bp-xsmall) {
+    font-size: 2.5rem;
+  }
+
+  @media only screen and (min-width: $bp-small) {
+    font-size: 4rem;
+  }
+
+  @media only screen and (min-width: $bp-xlarge) {
+    font-size: 4.5rem;
+  }
+
+  @media only screen and (min-width: $bp-xxlarge) {
+    font-size: 5rem;
+  }
 }
 .heading-2 {
   @extend %heading;
   color: var(--color-grey-dark);
   font-size: 2rem;
+
+  @media only screen and (min-width: $bp-xlarge) {
+    font-size: 2.5rem;
+  }
+
+  @media only screen and (min-width: $bp-xxlarge) {
+    font-size: 3rem;
+  }
 }
 .heading-3 {
   @extend %heading;

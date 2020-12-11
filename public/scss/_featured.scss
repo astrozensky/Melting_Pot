@@ -12,6 +12,17 @@
     column-gap: 2rem;
   }
 
+  @media only screen and (min-width: $bp-xlarge) {
+    margin: 4rem;
+    margin-top: 0;
+  }
+
+  @media only screen and (min-width: $bp-xxlarge) {
+    grid-column: center-start / center-end;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   &__heading {
     justify-self: center;
     display: flex;
@@ -42,6 +53,7 @@
     align-content: center;
     align-items: center;
     letter-spacing: 0.1rem;
+    position: relative;
 
     @media only screen and (min-width: $bp-small) {
       background-color: transparent;
@@ -74,10 +86,15 @@
     justify-content: center;
 
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.5rem;
+    right: 1.5rem;
     padding: 0.5rem;
     box-shadow: var(--shadow-primary);
+
+    @media only screen and (min-width: $bp-xsmall) {
+      top: 2rem;
+      right: 2rem;
+    }
 
     &-btn {
       border: none;

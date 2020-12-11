@@ -28,8 +28,9 @@
 }
 
 // RESPONSIVE BREAKPOINTS
-$bp-largest: 75em; // 1200px
-$bp-large: 62.5em; // 1000px
+$bp-xxlarge: 75em; // 1200px
+$bp-xlarge: 62.5em; // 1000px
+$bp-large: 56.25em; // 900px
 $bp-medium: 50em; // 800px
 $bp-small: 43.75em; // 700px
 $bp-xsmall: 31.25em; // 500px
@@ -55,8 +56,6 @@ body {
 }
 
 .container {
-  max-width: 120rem;
-
   display: grid;
   grid-template-columns:
     [full-start] 1fr [center-start] repeat(
@@ -64,4 +63,5 @@ body {
       [col-start] minmax(min-content, 14rem) [col-end]
     )
     [center-end] 1fr [full-end];
+  justify-content: center;
 }
