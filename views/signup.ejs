@@ -1,1 +1,28 @@
-<%- include("partials/header") %> <%- include("partials/footer") %>
+<%- include("partials/header") %>
+
+<section class="login">
+  <h1 class="heading-1 login__heading">Create an account</h1>
+  <form action="" class="login__form">
+    <label for="username" class="login__label">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      class="login__input-username"
+      placeholder="Username"
+      required
+    />
+    <label for="password" class="login__label">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      class="login__input-password"
+      placeholder="Password"
+      required
+    />
+    <button class="login__btn" type="submit">Create account</button>
+  </form>
+</section>
+
+<%- include("partials/footer") %>

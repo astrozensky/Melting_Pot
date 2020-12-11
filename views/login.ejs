@@ -1,12 +1,13 @@
 <%- include("partials/header") %>
 
 <section class="login">
-  <h1 class="heading-1 login__heading">Login</h1>
+  <h1 class="heading-1 login__heading">Log In</h1>
   <form action="" class="login__form">
     <label for="username" class="login__label">Username</label>
     <input
       type="text"
       id="username"
+      name="username"
       class="login__input-username"
       placeholder="Username"
       required
@@ -14,12 +15,13 @@
     <label for="password" class="login__label">Password</label>
     <input
       type="password"
+      name="password"
       id="password"
       class="login__input-password"
       placeholder="Password"
       required
     />
-    <button class="login__btn" type="submit">Login</button>
+    <button class="login__btn" type="submit">Log In</button>
   </form>
 </section>
 
