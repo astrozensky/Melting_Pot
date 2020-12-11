@@ -15,6 +15,17 @@
   grid-template-columns: 90vw;
   justify-content: center;
   align-content: center;
+
+  @media only screen and (min-width: $bp-small) {
+    margin: 2rem;
+    row-gap: 4vw;
+  }
+
+  &__tagline {
+    justify-self: center;
+    text-transform: uppercase;
+    text-shadow: var(--shadow-text);
+  }
 }
 
 %label {
@@ -33,6 +44,11 @@
   font-family: var(--font-primary);
   font-weight: 300;
   padding: 0.5rem 1rem;
+
+  @media only screen and (min-width: $bp-xsmall) {
+    height: 6vw;
+  }
+
   &::placeholder {
     font-family: var(--font-primary);
     font-weight: 300;
@@ -52,8 +68,18 @@
   align-items: center;
   justify-items: center;
   height: 70%;
+
+  @media only screen and (min-width: $bp-small) {
+    grid-template-columns: 50% 50%;
+  }
+
   &__main {
     @extend %input;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+    }
 
     &-label {
       @extend %label;
@@ -61,6 +87,12 @@
   }
   &__category {
     @extend %input;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+
     &-label {
       @extend %label;
     }
@@ -83,6 +115,10 @@
     padding: 1rem 0;
     box-shadow: var(--shadow-primary);
     transition: all 0.2s;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-column: 1 / -1;
+    }
 
     &:focus {
       outline: none;

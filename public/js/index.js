@@ -1,12 +1,11 @@
 function toggleNav() {
   const mobileNav = document.querySelector(".mobile-nav");
-  if (mobileNav.classList.contains("hidden")) {
-    mobileNav.classList.remove("hidden");
-    mobileNav.classList.add("visible");
-  } else {
-    mobileNav.classList.remove("visible");
-    mobileNav.classList.add("hidden");
-  }
+  mobileNav.classList.toggle("hidden");
+}
+
+function toggleLike() {
+  const heart = document.querySelector(".recipe__heart-icon");
+  heart.classList.toggle("like");
 }
 
 let recipes;
@@ -15,21 +14,44 @@ const searchBtn = document.querySelector(".search__btn");
 document.addEventListener("DOMContentLoaded", function () {
   searchBtn.addEventListener("click", function () {
     let offset = 0;
+    let resultsPerPage = 12;
     let cuisineCategory = document.querySelector(".search__category").value;
     let searchString = document.querySelector(".search__main").value;
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${searchString}&offset=${offset}&number=12&cuisine=${cuisineCategory}`;
 
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${searchString}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
     fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        recipes = data;
         populateSearchResults(data);
+        displayPaginationControls();
       });
   });
 });
+
+const callRecipeApi = function (
+  offset,
+  resultsPerPage,
+  query,
+  cuisineCategory
+) {
+  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${query}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
+  let json;
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
+const displayPaginationControls = function () {
+  const paginationDiv = document.querySelector(".pagination");
+  debugger;
+  paginationDiv.classList.remove("hidden");
+};
 
 const populateSearchResults = function (searchResults) {
   let featured = document.querySelector(".featured");
@@ -41,16 +63,18 @@ const populateSearchResults = function (searchResults) {
   featured.scrollIntoView();
 
   for (let i = 0; i < searchResults.results.length; i++) {
-    let recipeData;
+    // let recipeData;
 
-    fetch(
-      `https://api.spoonacular.com/recipes/${searchResults.results[i].id}/information?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&includeNutrition=false`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        recipeData = data;
-        createRecipeCard();
-      });
+    // fetch(
+    //   `https://api.spoonacular.com/recipes/${searchResults.results[i].id}/information?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&includeNutrition=false`
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     recipeData = data;
+    //     createRecipeCard();
+    //   });
+
+    createRecipeCard();
 
     function createRecipeCard() {
       let divRecipeCard = document.createElement("div");
@@ -76,10 +100,11 @@ const populateSearchResults = function (searchResults) {
       recipeName.textContent = searchResults.results[i].title;
       recipeDetails.appendChild(recipeName);
 
-      let recipeSource = document.createElement("p");
-      recipeSource.classList.add("recipe__source");
-      recipeSource.textContent = recipeData.sourceName;
-      recipeDetails.appendChild(recipeSource);
+      // let recipeSource = document.createElement("a");
+      // recipeSource.href = recipeData.sourceUrl;
+      // recipeSource.classList.add("recipe__source");
+      // recipeSource.textContent = recipeData.sourceName;
+      // recipeDetails.appendChild(recipeSource);
 
       divRecipeCard.appendChild(recipeDetails);
 

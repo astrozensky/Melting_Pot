@@ -3,15 +3,21 @@
 
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 2rem;
+  row-gap: 4rem;
   margin-bottom: 2rem;
+
+  @media only screen and (min-width: $bp-small) {
+    margin: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
 
   &__heading {
     justify-self: center;
-    // line-height: 0.5;
     display: flex;
     flex-direction: column;
     align-items: center;
+    grid-column: 1 / -1;
 
     &-accent {
       height: 2px;
@@ -26,7 +32,6 @@
   &__card {
     background-color: var(--color-grey-light-2);
     width: 100%;
-    // height: 20vh;
     padding: 2rem;
     box-shadow: var(--shadow-primary);
 
@@ -36,11 +41,23 @@
     column-gap: 2rem;
     align-content: center;
     align-items: center;
+    letter-spacing: 0.1rem;
+
+    @media only screen and (min-width: $bp-small) {
+      background-color: transparent;
+      padding: 0;
+      display: block;
+      height: 40vw;
+      position: relative;
+    }
   }
   &__img-container {
     grid-column: 1 / 2;
     height: 90%;
     box-shadow: var(--shadow-primary);
+    @media only screen and (min-width: $bp-small) {
+      height: 100%;
+    }
   }
   &__img {
     height: 100%;
@@ -49,15 +66,70 @@
     object-position: center;
   }
 
+  &__like {
+    background-color: rgba(var(--color-primary-light-rgb), 0.8);
+    border-radius: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    box-shadow: var(--shadow-primary);
+
+    &-btn {
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+      height: 2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__heart-icon {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &__description {
+    font-size: 1rem;
+    color: var(--color-grey-dark);
+  }
+
   &__details {
     grid-column: 2 / 3;
     display: grid;
     row-gap: 2vh;
+    padding-right: 1rem;
+
+    @media only screen and (min-width: $bp-small) {
+      background: rgba(var(--color-primary-light-rgb), 0.9);
+      padding: 1rem;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      box-shadow: var(--shadow-primary);
+      border-top-right-radius: 1rem;
+      width: 40%;
+    }
   }
   &__name:link,
   &__name:visited {
     font-size: 1.6rem;
     text-decoration: none;
+
+    @media only screen and (min-width: $bp-small) {
+      color: var(--color-grey-light-1);
+    }
+
+    &:hover {
+      color: #fff;
+    }
   }
   &__rating {
     display: flex;
@@ -74,8 +146,69 @@
     width: 1.5rem;
     fill: var(--color-primary);
   }
-  &__source {
+  &__source:link,
+  &__source:visited {
     font-size: 1.2rem;
+    text-decoration: none;
     color: var(--color-grey-dark);
+
+    &:hover {
+      color: #fff;
+    }
   }
+}
+
+.pagination {
+  margin: 0 auto;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    list-style: none;
+    box-shadow: var(--shadow-primary);
+    border: 2px solid var(--color-grey-light-3);
+    border-radius: 0.5rem;
+  }
+
+  &__control {
+    padding: 1rem;
+    background-color: var(--color-grey-light-2);
+    &:not(:last-child) {
+      border-right: 2px solid var(--color-grey-light-3);
+    }
+  }
+
+  &__button {
+    border: none;
+    border-radius: none;
+    color: var(--color-grey-dark);
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s;
+
+    &-start {
+    }
+    &-one {
+    }
+    &-two {
+    }
+    &-end {
+    }
+
+    &:focus {
+      outline: none;
+      transform: translateY(0.2rem);
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.like {
+  fill: var(--color-grey-light-2);
 }

@@ -51,6 +51,11 @@ body {
   color: #fff;
 }
 
+.heading-1 {
+  font-size: 4rem;
+  font-weight: 100;
+}
+
 .heading-2 {
   color: var(--color-grey-dark);
   font-size: 2rem;
@@ -68,15 +73,69 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: sticky;
+  top: 0;
+  right: 0;
   height: 6rem;
   box-shadow: var(--shadow-primary);
+  z-index: 5;
 }
 .header__logo {
   height: 4rem;
   width: auto;
   display: block;
   margin-left: 1rem;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+@media only screen and (max-width: 43.75em) {
+  .main-nav {
+    display: none;
+  }
+}
+.main-nav__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  column-gap: 1.5rem;
+}
+.main-nav__list:hover {
+  background-color: var(--color-grey-light-3);
+}
+.main-nav__item {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+.main-nav__link:link, .main-nav__link:visited {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--color-grey-dark);
+  font-size: 1.6rem;
+  letter-spacing: 0.2rem;
+}
+.main-nav__link:focus .main-nav__item {
+  background-color: var(--color-grey-light-3);
+}
+.main-nav__icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 1rem;
+  fill: var(--color-grey-dark);
 }
 
 .mobile-nav {
@@ -90,6 +149,11 @@ body {
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
+}
+@media only screen and (min-width: 43.75em) {
+  .mobile-nav {
+    display: none;
+  }
 }
 .mobile-nav__btn {
   display: grid;
@@ -106,6 +170,11 @@ body {
   transform: translate(-50%, -50%);
   transition: all 0.2s;
   z-index: 5;
+}
+@media only screen and (min-width: 43.75em) {
+  .mobile-nav__btn {
+    display: none;
+  }
 }
 .mobile-nav__btn:focus {
   outline: none;
@@ -173,6 +242,17 @@ body {
   justify-content: center;
   align-content: center;
 }
+@media only screen and (min-width: 43.75em) {
+  .hero {
+    margin: 2rem;
+    row-gap: 4vw;
+  }
+}
+.hero__tagline {
+  justify-self: center;
+  text-transform: uppercase;
+  text-shadow: var(--shadow-text);
+}
 
 .search__category-label, .search__main-label {
   font-size: 2rem;
@@ -190,6 +270,11 @@ body {
   font-family: var(--font-primary);
   font-weight: 300;
   padding: 0.5rem 1rem;
+}
+@media only screen and (min-width: 31.25em) {
+  .search__category, .search__main {
+    height: 6vw;
+  }
 }
 .search__category::placeholder, .search__main::placeholder {
   font-family: var(--font-primary);
@@ -210,6 +295,23 @@ body {
   justify-items: center;
   height: 70%;
 }
+@media only screen and (min-width: 43.75em) {
+  .search {
+    grid-template-columns: 50% 50%;
+  }
+}
+@media only screen and (min-width: 43.75em) {
+  .search__main {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+}
+@media only screen and (min-width: 43.75em) {
+  .search__category {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+}
 .search__btn {
   font-family: var(--font-primary);
   font-size: 2rem;
@@ -224,6 +326,11 @@ body {
   box-shadow: var(--shadow-primary);
   transition: all 0.2s;
 }
+@media only screen and (min-width: 43.75em) {
+  .search__btn {
+    grid-column: 1/-1;
+  }
+}
 .search__btn:focus {
   outline: none;
   transform: translateY(0.5rem);
@@ -233,14 +340,22 @@ body {
   grid-column: full-start/full-end;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 2rem;
+  row-gap: 4rem;
   margin-bottom: 2rem;
+}
+@media only screen and (min-width: 43.75em) {
+  .featured {
+    margin: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
 }
 .featured__heading {
   justify-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  grid-column: 1/-1;
 }
 .featured__heading-accent {
   height: 2px;
@@ -260,11 +375,26 @@ body {
   column-gap: 2rem;
   align-content: center;
   align-items: center;
+  letter-spacing: 0.1rem;
+}
+@media only screen and (min-width: 43.75em) {
+  .recipe__card {
+    background-color: transparent;
+    padding: 0;
+    display: block;
+    height: 40vw;
+    position: relative;
+  }
 }
 .recipe__img-container {
   grid-column: 1/2;
   height: 90%;
   box-shadow: var(--shadow-primary);
+}
+@media only screen and (min-width: 43.75em) {
+  .recipe__img-container {
+    height: 100%;
+  }
 }
 .recipe__img {
   height: 100%;
@@ -272,14 +402,64 @@ body {
   object-fit: cover;
   object-position: center;
 }
+.recipe__like {
+  background-color: rgba(var(--color-primary-light-rgb), 0.8);
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  box-shadow: var(--shadow-primary);
+}
+.recipe__like-btn {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  height: 2rem;
+}
+.recipe__like-btn:focus {
+  outline: none;
+}
+.recipe__heart-icon {
+  height: 2rem;
+  width: 2rem;
+}
+.recipe__description {
+  font-size: 1rem;
+  color: var(--color-grey-dark);
+}
 .recipe__details {
   grid-column: 2/3;
   display: grid;
   row-gap: 2vh;
+  padding-right: 1rem;
+}
+@media only screen and (min-width: 43.75em) {
+  .recipe__details {
+    background: rgba(var(--color-primary-light-rgb), 0.9);
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-shadow: var(--shadow-primary);
+    border-top-right-radius: 1rem;
+    width: 40%;
+  }
 }
 .recipe__name:link, .recipe__name:visited {
   font-size: 1.6rem;
   text-decoration: none;
+}
+@media only screen and (min-width: 43.75em) {
+  .recipe__name:link, .recipe__name:visited {
+    color: var(--color-grey-light-1);
+  }
+}
+.recipe__name:link:hover, .recipe__name:visited:hover {
+  color: #fff;
 }
 .recipe__rating {
   display: flex;
@@ -296,9 +476,54 @@ body {
   width: 1.5rem;
   fill: var(--color-primary);
 }
-.recipe__source {
+.recipe__source:link, .recipe__source:visited {
   font-size: 1.2rem;
+  text-decoration: none;
   color: var(--color-grey-dark);
+}
+.recipe__source:link:hover, .recipe__source:visited:hover {
+  color: #fff;
+}
+
+.pagination {
+  margin: 0 auto;
+}
+.pagination__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  box-shadow: var(--shadow-primary);
+  border: 2px solid var(--color-grey-light-3);
+  border-radius: 0.5rem;
+}
+.pagination__control {
+  padding: 1rem;
+  background-color: var(--color-grey-light-2);
+}
+.pagination__control:not(:last-child) {
+  border-right: 2px solid var(--color-grey-light-3);
+}
+.pagination__button {
+  border: none;
+  border-radius: none;
+  color: var(--color-grey-dark);
+  font-family: var(--font-primary);
+  font-size: 1.4rem;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s;
+}
+.pagination__button:focus {
+  outline: none;
+  transform: translateY(0.2rem);
+}
+
+.hidden {
+  display: none;
+}
+
+.like {
+  fill: var(--color-grey-light-2);
 }
 
 .footer {
@@ -315,11 +540,22 @@ body {
   display: grid;
   grid-template-columns: 1fr;
 }
+@media only screen and (min-width: 43.75em) {
+  .footer-nav__list {
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+  }
+}
 .footer-nav__item {
   width: 100%;
   padding: 1rem 0;
   display: flex;
   justify-content: center;
+}
+@media only screen and (min-width: 43.75em) {
+  .footer-nav__item {
+    margin: 1vw 2vw;
+  }
 }
 .footer-nav__link:link, .footer-nav__link:visited {
   display: flex;
@@ -327,7 +563,7 @@ body {
   justify-content: center;
   width: 100%;
   text-decoration: none;
-  color: var(--color-grey-light-1);
+  color: var(--color-grey-light-3);
   font-size: 1.6rem;
   font-weight: 300;
   letter-spacing: 0.2rem;
@@ -336,7 +572,7 @@ body {
   height: 1.5rem;
   width: 1.5rem;
   margin-right: 1rem;
-  fill: var(--color-grey-light-1);
+  fill: var(--color-grey-light-3);
 }
 
 .copyright__container {
@@ -347,6 +583,11 @@ body {
   padding: 1rem 0;
   font-size: 1.2rem;
   color: var(--color-grey-dark);
+}
+@media only screen and (min-width: 43.75em) {
+  .copyright__text {
+    font-size: 1.4rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

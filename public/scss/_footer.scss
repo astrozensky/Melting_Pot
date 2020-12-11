@@ -10,6 +10,11 @@
     list-style: none;
     display: grid;
     grid-template-columns: 1fr;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-template-columns: repeat(4, max-content);
+      justify-content: center;
+    }
   }
 
   &__item {
@@ -17,6 +22,10 @@
     padding: 1rem 0;
     display: flex;
     justify-content: center;
+
+    @media only screen and (min-width: $bp-small) {
+      margin: 1vw 2vw;
+    }
   }
 
   &__link:link,
@@ -27,7 +36,7 @@
     width: 100%;
 
     text-decoration: none;
-    color: var(--color-grey-light-1);
+    color: var(--color-grey-light-3);
     font-size: 1.6rem;
     font-weight: 300;
     letter-spacing: 0.2rem;
@@ -37,7 +46,7 @@
     height: 1.5rem;
     width: 1.5rem;
     margin-right: 1rem;
-    fill: var(--color-grey-light-1);
+    fill: var(--color-grey-light-3);
   }
 }
 
@@ -50,5 +59,9 @@
     padding: 1rem 0;
     font-size: 1.2rem;
     color: var(--color-grey-dark);
+
+    @media only screen and (min-width: $bp-small) {
+      font-size: 1.4rem;
+    }
   }
 }

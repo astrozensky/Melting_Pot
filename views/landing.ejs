@@ -24,6 +24,44 @@
   <body class="container">
     <header class="header">
       <img src="img/logo.png" alt="Melting Pot Logo" class="header__logo" />
+
+      <nav class="main-nav">
+        <ul class="main-nav__list">
+          <li class="main-nav__item">
+            <a href="#" class="main-nav__link">
+              <svg class="main-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-home"></use>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li class="main-nav__item">
+            <a href="#" class="main-nav__link">
+              <svg class="main-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-info-with-circle"></use>
+              </svg>
+              About
+            </a>
+          </li>
+          <li class="main-nav__item">
+            <a href="#" class="main-nav__link">
+              <svg class="main-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-login"></use>
+              </svg>
+              Log in
+            </a>
+          </li>
+          <li class="main-nav__item">
+            <a href="#" class="main-nav__link">
+              <svg class="main-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-add-user"></use>
+              </svg>
+              Sign up
+            </a>
+          </li>
+        </ul>
+      </nav>
+
       <button class="mobile-nav__btn" onclick="toggleNav()">
         <span class="mobile-nav__btn-line"></span>
         <span class="mobile-nav__btn-line"></span>
@@ -69,6 +107,7 @@
     </header>
 
     <section class="hero">
+      <h1 class="heading-1 hero__tagline">Recipes around the world</h1>
       <form class="search" action="">
         <label for="search__main" class="search__main-label"
           >Search for recipes</label
@@ -129,7 +168,11 @@
         </figure>
         <div class="recipe__details">
           <a href="#" class="heading-4 recipe__name">Recipe name</a>
-          <div class="recipe__rating">
+          <p class="recipe__description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar
+            massa eu lacus bibendum...
+          </p>
+          <!-- <div class="recipe__rating">
             <svg class="recipe__icon">
               <use xlink:href="img/sprite.svg#icon-star"></use>
             </svg>
@@ -146,9 +189,82 @@
               <use xlink:href="img/sprite.svg#icon-star"></use>
             </svg>
             <p class="recipe__rating-text">(23)</p>
-          </div>
-          <p class="recipe__source">Source: allRecipes</p>
+          </div> -->
+          <a href="#" class="recipe__source">Source: allRecipes</a>
         </div>
+        <div class="recipe__like">
+          <button class="recipe__like-btn" onclick="toggleLike()">
+            <svg class="recipe__heart-icon">
+              <use xlink:href="img/sprite.svg#icon-heart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="recipe__card">
+        <figure class="recipe__img-container">
+          <img
+            src="img/recipe-test.jpg"
+            alt="Recipe Image"
+            class="recipe__img"
+          />
+        </figure>
+        <div class="recipe__details">
+          <a href="#" class="heading-4 recipe__name">Recipe name</a>
+          <p class="recipe__description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar
+            massa eu lacus bibendum...
+          </p>
+          <!-- <div class="recipe__rating">
+            <svg class="recipe__icon">
+              <use xlink:href="img/sprite.svg#icon-star"></use>
+            </svg>
+            <svg class="recipe__icon">
+              <use xlink:href="img/sprite.svg#icon-star"></use>
+            </svg>
+            <svg class="recipe__icon">
+              <use xlink:href="img/sprite.svg#icon-star"></use>
+            </svg>
+            <svg class="recipe__icon">
+              <use xlink:href="img/sprite.svg#icon-star"></use>
+            </svg>
+            <svg class="recipe__icon">
+              <use xlink:href="img/sprite.svg#icon-star"></use>
+            </svg>
+            <p class="recipe__rating-text">(23)</p>
+          </div> -->
+          <a href="#" class="recipe__source">Source: allRecipes</a>
+        </div>
+        <div class="recipe__like">
+          <button class="recipe__like-btn" onclick="toggleLike()">
+            <svg class="recipe__heart-icon">
+              <use xlink:href="img/sprite.svg#icon-heart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="pagination hidden">
+        <ul class="pagination__list">
+          <li class="pagination__control">
+            <button class="pagination__button pagination__button-start">
+              <<
+            </button>
+          </li>
+          <li class="pagination__control">
+            <button class="pagination__button pagination__button-prev">
+              <
+            </button>
+          </li>
+          <li class="pagination__control">
+            <button class="pagination__button pagination__button-next">
+              >
+            </button>
+          </li>
+          <li class="pagination__control">
+            <button class="pagination__button pagination__button-end">
+              >>
+            </button>
+          </li>
+        </ul>
       </div>
     </section>
 
