@@ -1,0 +1,29 @@
+.about {
+  grid-column: center-start / center-end;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  row-gap: 3rem;
+  padding: 2rem;
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+  }
+
+  &__info {
+    color: var(--color-grey-dark);
+    font-size: 1.6rem;
+    letter-spacing: 0.1rem;
+  }
+
+  &__spoonacular-logo {
+    height: 10rem;
+    width: 10rem;
+    object-fit: contain;
+    object-position: center;
+  }
+}

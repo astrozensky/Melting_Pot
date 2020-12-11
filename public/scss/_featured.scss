@@ -29,13 +29,6 @@
     flex-direction: column;
     align-items: center;
     grid-column: 1 / -1;
-
-    &-accent {
-      height: 2px;
-      width: 90%;
-      display: inline-block;
-      background-color: var(--color-grey-dark);
-    }
   }
 }
 
@@ -206,26 +199,9 @@
     height: 100%;
     transition: all 0.2s;
 
-    &-start {
-    }
-    &-one {
-    }
-    &-two {
-    }
-    &-end {
-    }
-
     &:focus {
       outline: none;
       transform: translateY(0.2rem);
     }
   }
-}
-
-.hidden {
-  display: none;
-}
-
-.like {
-  fill: var(--color-grey-light-2);
 }
