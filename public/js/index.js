@@ -1,34 +1,38 @@
+"use strict";
+
 function toggleNav() {
   const mobileNav = document.querySelector(".mobile-nav");
   mobileNav.classList.toggle("hidden");
 }
 
-function toggleLike() {
-  heart.classList.toggle("like");
-}
-
 let recipes;
+let offset = 0;
+let resultsPerPage = 12;
 const searchBtn = document.querySelector(".search__btn");
 const paginationDiv = document.querySelector(".pagination");
+let cuisineCategory = "";
+let searchString = "";
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Search button listener
   searchBtn.addEventListener("click", function () {
-    let offset = 0;
-    let resultsPerPage = 12;
-    let cuisineCategory = document.querySelector(".search__category").value;
-    let searchString = document.querySelector(".search__main").value;
+    cuisineCategory = document.querySelector(".search__category").value;
+    searchString = document.querySelector(".search__main").value;
 
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${searchString}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        populateSearchResults(data);
-        displayPaginationControls();
-      });
+    // let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${searchString}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
+    // fetch(url)
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     populateSearchResults(data);
+    //     displayPaginationControls();
+    //   });
+
+    callRecipeApi(offset, resultsPerPage, searchString, cuisineCategory);
   });
 
+  // Like button listeners
   const heartBtns = document.querySelectorAll(".recipe__like-btn");
 
   for (let i = 0; i < heartBtns.length; i++) {
@@ -51,12 +55,48 @@ const callRecipeApi = function (
       return response.json();
     })
     .then((data) => {
-      return data;
+      recipes = data;
+      populateSearchResults(data);
+      displayPaginationControls();
+      addPaginationListeners();
     });
 };
 
 const displayPaginationControls = function () {
   paginationDiv.classList.remove("hidden");
+};
+
+const addPaginationListeners = function () {
+  // Pagination Buttons
+  const startBtn = document.getElementById("btn-start");
+  const prevBtn = document.getElementById("btn-prev");
+  const nextBtn = document.getElementById("btn-next");
+  const endBtn = document.getElementById("btn-end");
+  // Pagination buttons
+
+  startBtn.addEventListener("click", function () {
+    offset = 0;
+    callRecipeApi(offset, resultsPerPage, searchString, cuisineCategory);
+  });
+
+  prevBtn.addEventListener("click", function () {
+    if (offset !== 0) {
+      offset -= resultsPerPage;
+      callRecipeApi(offset, resultsPerPage, searchString, cuisineCategory);
+    }
+  });
+
+  nextBtn.addEventListener("click", function () {
+    if (offset + resultsPerPage <= recipes.totalResults) {
+      offset += resultsPerPage;
+      callRecipeApi(offset, resultsPerPage, searchString, cuisineCategory);
+    }
+  });
+
+  endBtn.addEventListener("click", function () {
+    offset = recipes.totalResults - resultsPerPage;
+    callRecipeApi(offset, resultsPerPage, searchString, cuisineCategory);
+  });
 };
 
 const populateSearchResults = function (searchResults) {
@@ -101,12 +141,6 @@ const populateSearchResults = function (searchResults) {
       recipeName.classList.add("heading-4", "recipe__name");
       recipeName.textContent = searchResults.results[i].title;
       recipeDetails.appendChild(recipeName);
-
-      // let recipeSource = document.createElement("a");
-      // recipeSource.href = recipeData.sourceUrl;
-      // recipeSource.classList.add("recipe__source");
-      // recipeSource.textContent = recipeData.sourceName;
-      // recipeDetails.appendChild(recipeSource);
 
       const recipeLike = document.createElement("div");
       recipeLike.classList.add("recipe__like");
