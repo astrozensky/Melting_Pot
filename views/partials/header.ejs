@@ -62,6 +62,14 @@
           </li>
           <% } else { %>
           <li class="main-nav__item">
+            <a href="/<%= currentUser._id %>" class="main-nav__link">
+              <svg class="main-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-user"></use>
+              </svg>
+              <%= currentUser.username %>
+            </a>
+          </li>
+          <li class="main-nav__item">
             <a href="/logout" class="main-nav__link">
               <svg class="main-nav__icon">
                 <use xlink:href="img/sprite.svg#icon-login"></use>
@@ -116,6 +124,14 @@
           </li>
           <% } else { %>
           <li class="mobile-nav__item">
+            <a href="/<%= currentUser._id %>" class="mobile-nav__link">
+              <svg class="mobile-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-user"></use>
+              </svg>
+              <%= currentUser.username %>
+            </a>
+          </li>
+          <li class="mobile-nav__item">
             <a href="/logout" class="mobile-nav__link">
               <svg class="mobile-nav__icon">
                 <use xlink:href="img/sprite.svg#icon-login"></use>
@@ -128,6 +144,12 @@
       </nav>
     </header>
     <div class="alert__container">
+      <script type="text/javascript">
+        window.setTimeout(
+          "document.querySelector('.alert').style.display='none';",
+          5000
+        );
+      </script>
       <% if(error && error.length > 0){ %>
       <div class="alert alert__error" role="alert"><%= error %></div>
       <% } %> <% if(success && success.length > 0){ %>

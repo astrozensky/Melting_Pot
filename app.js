@@ -108,7 +108,7 @@ app.get("/logout", (req, res) => {
 });
 
 // Profile Route
-app.get("/users/:id", (req, res) => {
+app.get("/:id", (req, res) => {
   res.render("profile");
 });
 
