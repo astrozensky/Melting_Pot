@@ -461,8 +461,13 @@ body {
   grid-column: full-start/full-end;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 4rem;
+  row-gap: 2rem;
   margin-bottom: 2rem;
+}
+@media only screen and (min-width: 31.25em) {
+  .featured {
+    row-gap: 3rem;
+  }
 }
 @media only screen and (min-width: 43.75em) {
   .featured {
@@ -490,6 +495,7 @@ body {
   flex-direction: column;
   align-items: center;
   grid-column: 1/-1;
+  margin-bottom: 2rem;
 }
 
 .recipe__card {
@@ -538,15 +544,15 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  left: 1rem;
   padding: 0.5rem;
   box-shadow: var(--shadow-primary);
 }
 @media only screen and (min-width: 31.25em) {
   .recipe__like {
     top: 2rem;
-    right: 2rem;
+    left: 2rem;
   }
 }
 .recipe__like-btn {
@@ -622,6 +628,13 @@ body {
 
 .pagination {
   margin: 0 auto;
+  width: 70%;
+}
+@media only screen and (min-width: 43.75em) {
+  .pagination {
+    grid-column: 1/-1;
+    width: 40%;
+  }
 }
 .pagination__list {
   display: grid;
@@ -641,6 +654,7 @@ body {
 .pagination__button {
   border: none;
   border-radius: none;
+  background-color: var(--color-grey-light-2);
   color: var(--color-grey-dark);
   font-family: var(--font-primary);
   font-size: 1.4rem;

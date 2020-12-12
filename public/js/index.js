@@ -4,12 +4,12 @@ function toggleNav() {
 }
 
 function toggleLike() {
-  const heart = document.querySelector(".recipe__heart-icon");
   heart.classList.toggle("like");
 }
 
 let recipes;
 const searchBtn = document.querySelector(".search__btn");
+const paginationDiv = document.querySelector(".pagination");
 
 document.addEventListener("DOMContentLoaded", function () {
   searchBtn.addEventListener("click", function () {
@@ -28,6 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
         displayPaginationControls();
       });
   });
+
+  const heartBtns = document.querySelectorAll(".recipe__like-btn");
+
+  for (let i = 0; i < heartBtns.length; i++) {
+    heartBtns[i].addEventListener("click", function () {
+      this.querySelector("svg").classList.toggle("like");
+    });
+  }
 });
 
 const callRecipeApi = function (
@@ -48,42 +56,36 @@ const callRecipeApi = function (
 };
 
 const displayPaginationControls = function () {
-  const paginationDiv = document.querySelector(".pagination");
-  debugger;
   paginationDiv.classList.remove("hidden");
 };
 
 const populateSearchResults = function (searchResults) {
-  let featured = document.querySelector(".featured");
-  featured.innerHTML = "";
-  let h2 = document.createElement("h2");
-  h2.classList.add("featured__heading", "heading-2");
-  h2.textContent = "Results";
-  featured.appendChild(h2);
+  const featured = document.querySelector(".featured");
+  const featuredHeading = document.querySelector(".featured__heading");
+  const recipeCards = document.querySelectorAll(".recipe__card");
+  const accentLine = document.createElement("span");
+  accentLine.classList.add("accent-line");
+
+  featuredHeading.textContent = "Results";
+  featuredHeading.appendChild(accentLine);
+
+  for (let i = 0; i < recipeCards.length; i++) {
+    featured.removeChild(recipeCards[i]);
+  }
+
   featured.scrollIntoView();
 
   for (let i = 0; i < searchResults.results.length; i++) {
-    // let recipeData;
-
-    // fetch(
-    //   `https://api.spoonacular.com/recipes/${searchResults.results[i].id}/information?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&includeNutrition=false`
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     recipeData = data;
-    //     createRecipeCard();
-    //   });
-
     createRecipeCard();
 
     function createRecipeCard() {
-      let divRecipeCard = document.createElement("div");
+      const divRecipeCard = document.createElement("div");
       divRecipeCard.classList.add("recipe__card");
 
-      let imgContainer = document.createElement("figure");
+      const imgContainer = document.createElement("figure");
       imgContainer.classList.add("recipe__img-container");
 
-      let img = document.createElement("img");
+      const img = document.createElement("img");
       img.src = searchResults.results[i].image;
       img.alt = `${searchResults.results[i].title} image`;
       img.classList.add("recipe__img");
@@ -91,10 +93,10 @@ const populateSearchResults = function (searchResults) {
 
       divRecipeCard.appendChild(imgContainer);
 
-      let recipeDetails = document.createElement("div");
+      const recipeDetails = document.createElement("div");
       recipeDetails.classList.add("recipe__details");
 
-      let recipeName = document.createElement("a");
+      const recipeName = document.createElement("a");
       recipeName.href = `recipe/${searchResults.results[i].id}`;
       recipeName.classList.add("heading-4", "recipe__name");
       recipeName.textContent = searchResults.results[i].title;
@@ -106,10 +108,39 @@ const populateSearchResults = function (searchResults) {
       // recipeSource.textContent = recipeData.sourceName;
       // recipeDetails.appendChild(recipeSource);
 
+      const recipeLike = document.createElement("div");
+      recipeLike.classList.add("recipe__like");
+
+      const likeBtn = document.createElement("button");
+      likeBtn.classList.add("recipe__like-btn");
+
+      const heartIcon = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+      );
+      heartIcon.classList.add("recipe__heart-icon");
+
+      const iconLink = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "use"
+      );
+      iconLink.setAttributeNS(
+        "http://www.w3.org/1999/xlink",
+        "xlink:href",
+        "img/sprite.svg#icon-heart"
+      );
+
+      heartIcon.appendChild(iconLink);
+      likeBtn.appendChild(heartIcon);
+      likeBtn.addEventListener("click", function () {
+        this.querySelector("svg").classList.toggle("like");
+      });
+      recipeLike.appendChild(likeBtn);
+      divRecipeCard.appendChild(recipeLike);
+
       divRecipeCard.appendChild(recipeDetails);
 
-      let featured = document.querySelector(".featured");
-      featured.appendChild(divRecipeCard);
+      featured.insertBefore(divRecipeCard, paginationDiv);
     }
   }
 };

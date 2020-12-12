@@ -3,8 +3,12 @@
 
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 4rem;
+  row-gap: 2rem;
   margin-bottom: 2rem;
+
+  @media only screen and (min-width: $bp-xsmall) {
+    row-gap: 3rem;
+  }
 
   @media only screen and (min-width: $bp-small) {
     margin: 2rem;
@@ -29,6 +33,7 @@
     flex-direction: column;
     align-items: center;
     grid-column: 1 / -1;
+    margin-bottom: 2rem;
   }
 }
 
@@ -79,14 +84,14 @@
     justify-content: center;
 
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 1rem;
+    left: 1rem;
     padding: 0.5rem;
     box-shadow: var(--shadow-primary);
 
     @media only screen and (min-width: $bp-xsmall) {
       top: 2rem;
-      right: 2rem;
+      left: 2rem;
     }
 
     &-btn {
@@ -170,6 +175,12 @@
 
 .pagination {
   margin: 0 auto;
+  width: 70%;
+
+  @media only screen and (min-width: $bp-small) {
+    grid-column: 1 / -1;
+    width: 40%;
+  }
 
   &__list {
     display: grid;
@@ -192,6 +203,7 @@
   &__button {
     border: none;
     border-radius: none;
+    background-color: var(--color-grey-light-2);
     color: var(--color-grey-dark);
     font-family: var(--font-primary);
     font-size: 1.4rem;
