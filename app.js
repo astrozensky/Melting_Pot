@@ -1,5 +1,9 @@
 const express = require("express"),
   app = express(),
+  mongoose = require("mongoose"),
+  passport = require("passport"),
+  User = require("./models/user"),
+  LocalStrategy = require("passport-local"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override");
 
@@ -7,6 +11,35 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
+
+// Connect to Database
+const url = process.env.DATABASEURL || "mongodb://localhost:27017/melting_pot";
+mongoose
+  .connect(url, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to database");
+  })
+  .catch((err) => {
+    console.log("Error: " + err.message);
+  });
+
+// Passport Configuration
+app.use(
+  require("express-session")({
+    secret: "The big blue bird bathed all day",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // ==============================
 // Routes
@@ -22,17 +55,48 @@ app.get("/about", (req, res) => {
   res.render("about");
 });
 
-// Landing Route
+// Show login form
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
-// Landing Route
-app.get("/signup", (req, res) => {
-  res.render("signup");
+// Handle user login
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  }),
+  function (req, res) {}
+);
+
+// Show Register form
+app.get("/register", (req, res) => {
+  res.render("register");
 });
 
-// Landing Route
+// Handle new user
+app.post("/register", (req, res) => {
+  const newUser = new User({ username: req.body.username });
+  User.register(newUser, req.body.password, function (err, user) {
+    if (err) {
+      console.log(`Error: ${err}`);
+      return res.render("register");
+    }
+    passport.authenticate("local")(req, res, function () {
+      // Successful new user
+      res.redirect("/");
+    });
+  });
+});
+
+// Logout
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+// Profile Route
 app.get("/users/:id", (req, res) => {
   res.render("profile");
 });
