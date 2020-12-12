@@ -111,6 +111,37 @@ body {
   fill: var(--color-grey-light-2);
 }
 
+.alert {
+  width: 90%;
+  margin: 1.5rem auto;
+  margin-bottom: -1rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-grey-light-2);
+  box-shadow: var(--shadow-primary);
+  font-size: 1.6rem;
+}
+@media only screen and (min-width: 43.75em) {
+  .alert {
+    width: 70%;
+  }
+}
+@media only screen and (min-width: 62.5em) {
+  .alert {
+    margin: 2rem auto;
+    margin-bottom: -2rem;
+  }
+}
+.alert__container {
+  grid-column: full-start/full-end;
+  width: 100%;
+}
+.alert__error {
+  color: red;
+}
+.alert__success {
+  color: green;
+}
+
 .header {
   background-color: var(--color-grey-light-2);
   grid-column: full-start/full-end;

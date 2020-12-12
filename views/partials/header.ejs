@@ -43,20 +43,13 @@
               About
             </a>
           </li>
+          <% if(!currentUser){ %>
           <li class="main-nav__item">
             <a href="/login" class="main-nav__link">
               <svg class="main-nav__icon">
                 <use xlink:href="img/sprite.svg#icon-login"></use>
               </svg>
               Log in
-            </a>
-          </li>
-          <li class="main-nav__item">
-            <a href="/logout" class="main-nav__link">
-              <svg class="main-nav__icon">
-                <use xlink:href="img/sprite.svg#icon-login"></use>
-              </svg>
-              Log out
             </a>
           </li>
           <li class="main-nav__item">
@@ -67,6 +60,16 @@
               Sign up
             </a>
           </li>
+          <% } else { %>
+          <li class="main-nav__item">
+            <a href="/logout" class="main-nav__link">
+              <svg class="main-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-login"></use>
+              </svg>
+              Log out
+            </a>
+          </li>
+          <% } %>
         </ul>
       </nav>
 
@@ -94,6 +97,7 @@
               About
             </a>
           </li>
+          <% if(!currentUser){ %>
           <li class="mobile-nav__item">
             <a href="/login" class="mobile-nav__link">
               <svg class="mobile-nav__icon">
@@ -110,8 +114,25 @@
               Sign up
             </a>
           </li>
+          <% } else { %>
+          <li class="mobile-nav__item">
+            <a href="/logout" class="mobile-nav__link">
+              <svg class="mobile-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-login"></use>
+              </svg>
+              Log out
+            </a>
+          </li>
+          <% } %>
         </ul>
       </nav>
     </header>
+    <div class="alert__container">
+      <% if(error && error.length > 0){ %>
+      <div class="alert alert__error" role="alert"><%= error %></div>
+      <% } %> <% if(success && success.length > 0){ %>
+      <div class="alert alert__success" role="alert"><%= success %></div>
+      <% } %>
+    </div>
   </body>
 </html>

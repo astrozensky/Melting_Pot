@@ -17,22 +17,33 @@
             About
           </a>
         </li>
-        <li class="footer-nav__item">
-          <a href="/login" class="footer-nav__link">
-            <svg class="footer-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-login"></use>
-            </svg>
-            Log in
-          </a>
-        </li>
-        <li class="footer-nav__item">
-          <a href="/register" class="footer-nav__link">
-            <svg class="footer-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-add-user"></use>
-            </svg>
-            Sign up
-          </a>
-        </li>
+        <% if(!currentUser){ %>
+          <li class="footer-nav__item">
+            <a href="/login" class="footer-nav__link">
+              <svg class="footer-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-login"></use>
+              </svg>
+              Log in
+            </a>
+          </li>
+          <li class="footer-nav__item">
+            <a href="/register" class="footer-nav__link">
+              <svg class="footer-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-add-user"></use>
+              </svg>
+              Sign up
+            </a>
+          </li>
+          <% } else { %>
+          <li class="footer-nav__item">
+            <a href="/logout" class="footer-nav__link">
+              <svg class="footer-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-login"></use>
+              </svg>
+              Log out
+            </a>
+          </li>
+          <% } %>
       </ul>
     </nav>
     <div class="copyright__container">
