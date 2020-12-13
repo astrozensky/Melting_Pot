@@ -8,6 +8,7 @@ function toggleNav() {
 let recipes;
 let offset = 0;
 let resultsPerPage = 12;
+let counter = 0;
 const searchBtn = document.querySelector(".search__btn");
 const paginationDiv = document.querySelector(".pagination");
 let cuisineCategory = "";
@@ -19,17 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cuisineCategory = document.querySelector(".search__category").value;
     searchString = document.querySelector(".search__main").value;
 
-    // let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${searchString}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
-    // fetch(url)
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     populateSearchResults(data);
-    //     displayPaginationControls();
-    //   });
-
-    callRecipeApi(offset, resultsPerPage, searchString, cuisineCategory);
+    callRecipeApi(0, resultsPerPage, searchString, cuisineCategory);
   });
 
   // Like button listeners
@@ -49,7 +40,7 @@ const callRecipeApi = function (
   cuisineCategory
 ) {
   let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${query}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
-  let json;
+  debugger;
   fetch(url)
     .then((response) => {
       return response.json();
@@ -57,8 +48,11 @@ const callRecipeApi = function (
     .then((data) => {
       recipes = data;
       populateSearchResults(data);
-      displayPaginationControls();
-      addPaginationListeners();
+      if (counter === 0) {
+        displayPaginationControls();
+        addPaginationListeners();
+        counter++;
+      }
     });
 };
 
