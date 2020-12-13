@@ -5,6 +5,14 @@
   background-color: var(--color-grey-dark);
 }
 
+.accent-line-orange {
+  height: 2px;
+  width: 90%;
+  display: inline-block;
+  background-color: var(--color-primary);
+  margin: 0 auto;
+}
+
 .hidden {
   display: none;
 }

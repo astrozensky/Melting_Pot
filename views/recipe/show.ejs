@@ -1,0 +1,119 @@
+<%- include('../partials/header') %>
+
+<section class="show">
+  <figure class="show__img-container">
+    <img
+      src="<%= recipe.image %>"
+      alt="<%= recipe.title %>"
+      class="show__img"
+    />
+  </figure>
+  <div class="show__details">
+    <h1 class="show__name heading-1"><%= recipe.title %></h1>
+    <p class="show__rating">
+      Rating:
+      <span class="show__likes show__rating-number"
+        ><%= recipe.healthScore %></span
+      >
+    </p>
+    <p class="show__likes">
+      <svg class="show__details-icon">
+        <use xlink:href="/img/sprite.svg#icon-thumbs-up"></use>
+      </svg>
+      <%= recipe.aggregateLikes %>
+    </p>
+    <p class="show__saves">
+      <svg class="show__details-icon">
+        <use xlink:href="/img/sprite.svg#icon-heart"></use>
+      </svg>
+      <%= Math.trunc(Math.random()*800)+1 %>
+    </p>
+    <p class="show__source">
+      <a href="<%= recipe.sourceUrl %>" class="show__source-link"
+        ><%= recipe.sourceName %></a
+      >
+    </p>
+  </div>
+  <div class="show__social">
+    <button class="show__social__btn">
+      <svg class="show__social-icon">
+        <use xlink:href="/img/sprite.svg#icon-thumbs-up"></use>
+      </svg>
+      Like
+    </button>
+    <button class="show__social__btn">
+      <svg class="show__social-icon">
+        <use xlink:href="/img/sprite.svg#icon-heart"></use>
+      </svg>
+      Save
+    </button>
+    <button class="show__social__btn">
+      <svg class="show__social-icon">
+        <use xlink:href="/img/sprite.svg#icon-share"></use>
+      </svg>
+      Share
+    </button>
+  </div>
+  <div class="show__description">
+    <p class="show__description-text"><%- recipe.summary %></p>
+  </div>
+  <!-- <div class="show__testimonial"></div> -->
+  <div class="show__time">
+    <% if(recipe.preparationMinutes !== '') { %>
+    <p class="show__time-prep">
+      <b>Prep time:</b>
+      <%= recipe.preparationMinutes %> minutes
+    </p>
+    <% } else { %>
+    <p class="show__time-prep">
+      <b>Prep time:</b>
+      n/a
+    </p>
+    <% } %>
+    <p class="show__time-cook">
+      <b>Cook time:</b> <%= recipe.cookingMinutes %> minutes
+    </p>
+    <p class="show__time-total">
+      <b>Total time:</b> <%= recipe.readyInMinutes %> minutes
+    </p>
+    <p class="show__time-yields"><b>Yields:</b> <%= recipe.servings %></p>
+  </div>
+  <div class="show__ingredients">
+    <h2 class="heading-2 show__ingredients-heading">
+      Ingredients <span class="accent-line-orange"></span>
+    </h2>
+    <ul class="show__ingredients-list">
+      <% for(let i = 0; i < recipe.extendedIngredients.length; i++) { %>
+      <li class="show__ingredients-item">
+        <svg class="show__ingredients-icon">
+          <use xlink:href="/img/sprite.svg#icon-chevron-thin-right"></use>
+        </svg>
+        <%= recipe.extendedIngredients[i].originalString %>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+  <div class="show__instructions">
+    <h2 class="heading-2 show__instructions-heading">
+      Instructions <span class="accent-line-orange"></span>
+    </h2>
+    <ul class="show__instructions-list">
+      <% for(let i = 0; i < recipe.analyzedInstructions[0].steps.length; i++) {
+      %>
+      <li class="show__instructions-item">
+        <button class="show__instructions-btn">
+          <svg class="show__instructions-btn-icon">
+            <use xlink:href="/img/sprite.svg#icon-checkbox-checked"></use>
+          </svg>
+          Step <%= recipe.analyzedInstructions[0].steps[i].number %>
+        </button>
+        <p class="show__instructions-step">
+          <%= recipe.analyzedInstructions[0].steps[i].step %>
+        </p>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

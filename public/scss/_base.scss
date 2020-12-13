@@ -53,6 +53,7 @@ body {
   font-family: var(--font-primary);
   font-weight: 300;
   line-height: 1.6;
+  max-width: 100%;
 }
 
 .container {
@@ -64,4 +65,5 @@ body {
     )
     [center-end] 1fr [full-end];
   justify-content: center;
+  width: 100%;
 }

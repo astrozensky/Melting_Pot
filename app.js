@@ -6,7 +6,8 @@ const express = require("express"),
   LocalStrategy = require("passport-local"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
-  flash = require("connect-flash");
+  flash = require("connect-flash"),
+  fetch = require("node-fetch");
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -112,17 +113,20 @@ app.get("/:id", (req, res) => {
   res.render("profile");
 });
 
-// // Recipe Show route
-// app.get("/recipes/:id", (req,res) => {
-//     let url = "https://api.spoonacular.com/recipes/" + req.params.id + "/information?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&includeNutrition=false";
-//     let settings = { method: "Get" };
+// Recipe Show route
+app.get("/recipe/:id", (req, res) => {
+  let url =
+    "https://api.spoonacular.com/recipes/" +
+    req.params.id +
+    "/information?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&includeNutrition=false";
+  let settings = { method: "Get" };
 
-//     fetch(url, settings)
-//         .then(res => res.json())
-//         .then((json) => {
-//             res.render("recipes/show", {recipe: json});
-//         });
-// });
+  fetch(url, settings)
+    .then((res) => res.json())
+    .then((json) => {
+      res.render("recipe/show", { recipe: json });
+    });
+});
 
 // Server Listen
 const port = process.env.PORT || 3000;

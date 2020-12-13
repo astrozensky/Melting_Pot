@@ -40,7 +40,6 @@ const callRecipeApi = function (
   cuisineCategory
 ) {
   let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${query}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
-  debugger;
   fetch(url)
     .then((response) => {
       return response.json();
