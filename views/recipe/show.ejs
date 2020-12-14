@@ -78,6 +78,40 @@
     </p>
     <p class="show__time-yields"><b>Yields:</b> <%= recipe.servings %></p>
   </div>
+  <div class="show__nutrition">
+    <p class="show__nutrition-item">
+      <b>Vegetarian:</b>
+      <svg class="show__nutrition-icon">
+        <use
+          xlink:href="/img/sprite.svg#icon-<%= recipe.vegetarian ? 'thumbs-up' : 'thumbs-down' %>"
+        ></use>
+      </svg>
+    </p>
+    <p class="show__nutrition-item">
+      <b>Vegan:</b>
+      <svg class="show__nutrition-icon">
+        <use
+          xlink:href="/img/sprite.svg#icon-<%= recipe.vegan ? 'thumbs-up' : 'thumbs-down' %>"
+        ></use>
+      </svg>
+    </p>
+    <p class="show__nutrition-item">
+      <b>Gluten Free:</b>
+      <svg class="show__nutrition-icon">
+        <use
+          xlink:href="/img/sprite.svg#icon-<%= recipe.glutenFree ? 'thumbs-up' : 'thumbs-down' %>"
+        ></use>
+      </svg>
+    </p>
+    <p class="show__nutrition-item">
+      <b>Dairy Free:</b>
+      <svg class="show__nutrition-icon">
+        <use
+          xlink:href="/img/sprite.svg#icon-<%= recipe.dairyFree ? 'thumbs-up' : 'thumbs-down' %>"
+        ></use>
+      </svg>
+    </p>
+  </div>
   <div class="show__ingredients">
     <h2 class="heading-2 show__ingredients-heading">
       Ingredients <span class="accent-line-orange"></span>

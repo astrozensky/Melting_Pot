@@ -37,13 +37,16 @@ body {
   font-weight: 300;
   line-height: 1.6;
   max-width: 100%;
+  min-height: 100vh;
 }
 
 .container {
   display: grid;
   grid-template-columns: [full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] 1fr [full-end];
+  grid-template-rows: 6rem repeat(10, minmax(min-content, 1fr)) [footer-start] 14rem [footer-end];
   justify-content: center;
   width: 100%;
+  height: 100vh;
 }
 
 .heading-4, .heading-3, .heading-2, .heading-1 {
@@ -483,18 +486,21 @@ body {
   .featured {
     margin: 2rem;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 2rem;
+    column-gap: 3rem;
   }
 }
 @media only screen and (min-width: 62.5em) {
   .featured {
     margin: 4rem;
     margin-top: 0;
+    row-gap: 4rem;
+    column-gap: 4rem;
   }
 }
 @media only screen and (min-width: 75em) {
   .featured {
     grid-column: center-start/center-end;
+    grid-template-columns: repeat(3, 1fr);
     margin-left: 0;
     margin-right: 0;
   }
@@ -527,8 +533,13 @@ body {
     background-color: transparent;
     padding: 0;
     display: block;
-    height: 40vw;
+    height: 30vw;
     position: relative;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .recipe__card {
+    height: 40rem;
   }
 }
 .recipe__img-container {
@@ -597,7 +608,9 @@ body {
     left: 0;
     box-shadow: var(--shadow-primary);
     border-top-right-radius: 1rem;
-    width: 40%;
+    min-width: 40%;
+    max-width: 50%;
+    min-height: 30%;
   }
 }
 .recipe__name:link, .recipe__name:visited {
@@ -680,6 +693,7 @@ body {
 .footer {
   background-color: var(--color-grey-dark);
   grid-column: full-start/full-end;
+  grid-row: footer-start/footer-end;
   box-shadow: var(--shadow-primary);
 }
 
@@ -746,13 +760,15 @@ body {
   display: grid;
   grid-template-columns: 100%;
   justify-items: center;
-  row-gap: 2rem;
+  row-gap: 2.5rem;
   margin: 2rem 0;
 }
 @media only screen and (min-width: 43.75em) {
   .show {
     grid-template-columns: repeat(2, 45vw);
     justify-content: center;
+    column-gap: 3rem;
+    row-gap: 3rem;
   }
 }
 .show__img {
@@ -793,6 +809,7 @@ body {
     grid-column: 1/2;
     transform: translateY(-75%);
     width: 90%;
+    justify-self: end;
   }
 }
 .show__details-icon {
@@ -869,24 +886,26 @@ body {
   margin-right: 0.5rem;
   fill: var(--color-grey-light-1);
 }
-.show .show__instructions, .show .show__ingredients, .show .show__time, .show .show__description {
-  width: 90%;
+.show .show__instructions, .show .show__ingredients, .show .show__nutrition, .show .show__time, .show .show__description {
+  min-width: 90%;
   background-color: var(--color-grey-light-2);
   box-shadow: var(--shadow-primary);
   border-radius: 1rem;
   padding: 2rem 1.5rem;
+  margin: 1rem 2rem;
   font-size: 1.2rem;
   letter-spacing: 0.1rem;
   color: var(--color-grey-dark);
 }
 @media only screen and (min-width: 43.75em) {
-  .show .show__instructions, .show .show__ingredients, .show .show__time, .show .show__description {
+  .show .show__instructions, .show .show__ingredients, .show .show__nutrition, .show .show__time, .show .show__description {
     width: unset;
   }
 }
 @media only screen and (min-width: 43.75em) {
   .show__description {
-    grid-column: 1/-1;
+    grid-column: 1/2;
+    grid-row: 4/5;
     width: 100%;
   }
 }
@@ -903,13 +922,31 @@ body {
 @media only screen and (min-width: 43.75em) {
   .show__time {
     grid-column: 1/2;
-    justify-self: start;
-    align-self: center;
-    width: 90%;
+    grid-row: 3/4;
   }
 }
 .show__time * {
   margin-bottom: 1rem;
+}
+.show__nutrition {
+  font-size: 1.2rem;
+}
+@media only screen and (min-width: 43.75em) {
+  .show__nutrition {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+}
+.show__nutrition-item {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+.show__nutrition-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--color-primary);
+  margin-left: 1rem;
 }
 .show .show__instructions-list, .show .show__ingredients-list {
   list-style: none;
@@ -923,7 +960,6 @@ body {
 @media only screen and (min-width: 43.75em) {
   .show__ingredients {
     grid-column: 2/3;
-    justify-self: end;
   }
 }
 .show__ingredients-heading {

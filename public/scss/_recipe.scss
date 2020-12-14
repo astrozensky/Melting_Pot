@@ -4,12 +4,14 @@
   display: grid;
   grid-template-columns: 100%;
   justify-items: center;
-  row-gap: 2rem;
+  row-gap: 2.5rem;
   margin: 2rem 0;
 
   @media only screen and (min-width: $bp-small) {
     grid-template-columns: repeat(2, 45vw);
     justify-content: center;
+    column-gap: 3rem;
+    row-gap: 3rem;
   }
 
   @media only screen and (min-width: $bp-small) {
@@ -50,6 +52,7 @@
       grid-column: 1 / 2;
       transform: translateY(-75%);
       width: 90%;
+      justify-self: end;
     }
 
     &-icon {
@@ -144,11 +147,12 @@
     }
   }
   %recipe-info {
-    width: 90%;
+    min-width: 90%;
     background-color: var(--color-grey-light-2);
     box-shadow: var(--shadow-primary);
     border-radius: 1rem;
     padding: 2rem 1.5rem;
+    margin: 1rem 2rem;
     font-size: 1.2rem;
     letter-spacing: 0.1rem;
     color: var(--color-grey-dark);
@@ -161,7 +165,8 @@
     @extend %recipe-info;
 
     @media only screen and (min-width: $bp-small) {
-      grid-column: 1 / -1;
+      grid-column: 1 / 2;
+      grid-row: 4 / 5;
       width: 100%;
     }
     &-text {
@@ -180,14 +185,35 @@
 
     @media only screen and (min-width: $bp-small) {
       grid-column: 1 / 2;
-      justify-self: start;
-      align-self: center;
-      width: 90%;
+      grid-row: 3 / 4;
     }
     & * {
       margin-bottom: 1rem;
     }
   }
+
+  &__nutrition {
+    @extend %recipe-info;
+    font-size: 1.2rem;
+
+    @media only screen and (min-width: $bp-small) {
+      grid-column: 2 / 3;
+      grid-row: 3 / 4;
+    }
+
+    &-item {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    &-icon {
+      width: 2rem;
+      height: 2rem;
+      fill: var(--color-primary);
+      margin-left: 1rem;
+    }
+  }
+
   %list {
     list-style: none;
     font-size: 1.2rem;
@@ -200,7 +226,6 @@
 
     @media only screen and (min-width: $bp-small) {
       grid-column: 2 / 3;
-      justify-self: end;
     }
 
     &-heading {
