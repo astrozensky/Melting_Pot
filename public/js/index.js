@@ -5,6 +5,11 @@ function toggleNav() {
   mobileNav.classList.toggle("hidden");
 }
 
+function toggleStep() {
+  const icon = event.srcElement;
+  icon.classList.toggle("icon-orange");
+}
+
 let recipes;
 let offset = 0;
 let resultsPerPage = 12;

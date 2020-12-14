@@ -8,13 +8,15 @@
   margin: 2rem 0;
 
   @media only screen and (min-width: $bp-small) {
-    grid-template-columns: repeat(2, 45vw);
+    grid-template-columns: repeat(2, 45%);
     justify-content: center;
     column-gap: 3rem;
     row-gap: 3rem;
   }
 
-  @media only screen and (min-width: $bp-small) {
+  @media only screen and (min-width: $bp-xlarge) {
+    grid-column: center-start / center-end;
+    row-gap: 5rem;
   }
   &__img {
     width: 100%;
@@ -28,6 +30,11 @@
       @media only screen and (min-width: $bp-small) {
         grid-column: 1 / -1;
         width: 90vw;
+      }
+
+      @media only screen and (min-width: $bp-large) {
+        grid-column: 1 / -1;
+        width: 100%;
       }
     }
   }
@@ -60,12 +67,21 @@
       width: 1.5rem;
       margin-right: 1rem;
       fill: var(--color-grey-dark);
+
+      @media only screen and (min-width: $bp-xlarge) {
+        height: 2rem;
+        width: 2rem;
+      }
     }
   }
   %blue {
     color: var(--color-primary);
     font-size: 1.2rem;
     font-weight: 100;
+
+    @media only screen and (min-width: $bp-xlarge) {
+      font-size: 1.4rem;
+    }
   }
   %flex {
     display: flex;
@@ -76,12 +92,20 @@
     grid-column: 1 / -1;
     color: var(--color-grey-dark);
     font-size: 1.7rem;
+
+    @media only screen and (min-width: $bp-xlarge) {
+      font-size: 2.2rem;
+    }
   }
   &__rating {
     border-right: 1px solid var(--color-grey-light-3);
     color: var(--color-grey-dark);
     font-size: 1.2rem;
     @extend %flex;
+
+    @media only screen and (min-width: $bp-xlarge) {
+      font-size: 1.4rem;
+    }
 
     &-number {
       margin-left: 1rem;
@@ -104,6 +128,10 @@
     &-link:visited {
       color: var(--color-grey-dark);
       font-size: 1.2rem;
+
+      @media only screen and (min-width: $bp-xlarge) {
+        font-size: 1.4rem;
+      }
     }
   }
 
@@ -127,6 +155,7 @@
       );
       color: var(--color-grey-light-1);
       padding: 1rem;
+      letter-spacing: 0.1rem;
 
       display: flex;
       align-items: center;
@@ -137,6 +166,11 @@
         width: auto;
         align-self: start;
       }
+
+      @media only screen and (min-width: $bp-xlarge) {
+        font-size: 1.4rem;
+        padding: 1.5rem 2rem;
+      }
     }
 
     &-icon {
@@ -144,6 +178,11 @@
       height: 1.5rem;
       margin-right: 0.5rem;
       fill: var(--color-grey-light-1);
+
+      @media only screen and (min-width: $bp-xlarge) {
+        height: 2rem;
+        width: 2rem;
+      }
     }
   }
   %recipe-info {
@@ -157,17 +196,18 @@
     letter-spacing: 0.1rem;
     color: var(--color-grey-dark);
 
-    @media only screen and (min-width: $bp-small) {
-      width: unset;
+    @media only screen and (min-width: $bp-xlarge) {
+      font-size: 1.6rem;
     }
   }
   &__description {
     @extend %recipe-info;
+    width: 90%;
 
     @media only screen and (min-width: $bp-small) {
-      grid-column: 1 / 2;
-      grid-row: 4 / 5;
-      width: 100%;
+      grid-column: 1 / -1;
+      grid-row: 3 / 4;
+      width: 95%;
     }
     &-text {
       a:link,
@@ -185,7 +225,7 @@
 
     @media only screen and (min-width: $bp-small) {
       grid-column: 1 / 2;
-      grid-row: 3 / 4;
+      grid-row: 4 / 5;
     }
     & * {
       margin-bottom: 1rem;
@@ -198,7 +238,7 @@
 
     @media only screen and (min-width: $bp-small) {
       grid-column: 2 / 3;
-      grid-row: 3 / 4;
+      grid-row: 4 / 5;
     }
 
     &-item {
@@ -217,6 +257,10 @@
   %list {
     list-style: none;
     font-size: 1.2rem;
+
+    @media only screen and (min-width: $bp-xlarge) {
+      font-size: 1.6rem;
+    }
   }
   &__ingredients {
     @extend %recipe-info;
@@ -225,7 +269,8 @@
     row-gap: 2rem;
 
     @media only screen and (min-width: $bp-small) {
-      grid-column: 2 / 3;
+      grid-column: 1 / -1;
+      width: 95% !important;
     }
 
     &-heading {
@@ -253,10 +298,11 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 2rem;
+    width: 90%;
 
     @media only screen and (min-width: $bp-small) {
       grid-column: 1 / -1;
-      width: 100%;
+      width: 95%;
     }
 
     &-heading {
@@ -281,6 +327,10 @@
       color: var(--color-grey-dark);
       letter-spacing: 0.1rem;
 
+      @media only screen and (min-width: $bp-xlarge) {
+        font-size: 1.6rem;
+      }
+
       &:focus {
         outline: none;
       }
@@ -290,9 +340,12 @@
         width: 1.5rem;
         margin-right: 1rem;
         fill: var(--color-grey-dark);
+
+        @media only screen and (min-width: $bp-xlarge) {
+          height: 2rem;
+          width: 2rem;
+        }
       }
-    }
-    &-step {
     }
   }
 }
