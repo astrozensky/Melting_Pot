@@ -134,14 +134,14 @@
     border: none;
     border-radius: 10rem;
     background: linear-gradient(
-        to right,
-        rgba(var(--color-secondary-light-rgb), 1),
-        rgba(#fff, 0)
-      ),
-      var(--color-secondary);
+      to right,
+      rgba(var(--color-secondary-light-rgb), 1),
+      rgba(var(--color-secondary-rgb), 1)
+    );
     width: 90%;
     padding: 1rem 0;
     box-shadow: var(--shadow-primary);
+    cursor: pointer;
     transition: all 0.2s;
 
     @media only screen and (min-width: $bp-small) {
@@ -151,6 +151,13 @@
     &:focus {
       outline: none;
       transform: translateY(0.5rem);
+    }
+    &:hover {
+      background: linear-gradient(
+        to left,
+        rgba(var(--color-secondary-light-rgb), 1),
+        rgba(var(--color-secondary-rgb), 1)
+      );
     }
   }
 }

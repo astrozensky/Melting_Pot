@@ -24,9 +24,14 @@
     padding: 1rem 0;
     display: flex;
     justify-content: center;
+    align-items: stretch;
 
     @media only screen and (min-width: $bp-small) {
       margin: 1vw 2vw;
+    }
+
+    &:hover {
+      background-color: var(--color-grey-dark-2);
     }
   }
 

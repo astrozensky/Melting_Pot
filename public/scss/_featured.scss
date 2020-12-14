@@ -106,9 +106,14 @@
       border-radius: 0;
       background-color: transparent;
       height: 2rem;
+      cursor: pointer;
+      transform: scale(1);
 
       &:focus {
         outline: none;
+      }
+      &:hover {
+        transform: scale(1.1);
       }
     }
   }
@@ -116,6 +121,7 @@
   &__heart-icon {
     height: 2rem;
     width: 2rem;
+    transition: all 0.2s;
   }
 
   &__description {

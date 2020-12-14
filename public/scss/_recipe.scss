@@ -156,6 +156,8 @@
       color: var(--color-grey-light-1);
       padding: 1rem;
       letter-spacing: 0.1rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-primary);
 
       display: flex;
       align-items: center;
@@ -170,6 +172,18 @@
       @media only screen and (min-width: $bp-xlarge) {
         font-size: 1.4rem;
         padding: 1.5rem 2rem;
+      }
+
+      &:focus {
+        outline: none;
+        transform: translateY(0.2rem);
+      }
+      &:hover {
+        background: linear-gradient(
+          to bottom left,
+          rgba(var(--color-secondary-light-rgb), 0.8),
+          rgba(var(--color-secondary-rgb), 1)
+        );
       }
     }
 
@@ -198,6 +212,7 @@
 
     @media only screen and (min-width: $bp-xlarge) {
       font-size: 1.6rem;
+      padding: 3rem 4rem;
     }
   }
   &__description {
@@ -277,9 +292,19 @@
       justify-self: center;
       display: flex;
       flex-direction: column;
+
+      @media only screen and (min-width: $bp-xxlarge) {
+        grid-column: 1 / -1;
+      }
     }
     &-list {
       @extend %list;
+
+      @media only screen and (min-width: $bp-small) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+      }
     }
     &-item {
       padding: 1rem 0;
@@ -326,6 +351,7 @@
       font-family: var(--font-primary);
       color: var(--color-grey-dark);
       letter-spacing: 0.1rem;
+      cursor: pointer;
 
       @media only screen and (min-width: $bp-xlarge) {
         font-size: 1.6rem;
@@ -344,6 +370,10 @@
         @media only screen and (min-width: $bp-xlarge) {
           height: 2rem;
           width: 2rem;
+        }
+
+        &:hover {
+          fill: var(--color-grey-dark-2);
         }
       }
     }

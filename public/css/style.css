@@ -10,6 +10,7 @@
   --color-secondary-light-rgb: 39, 136, 187;
   --color-secondary-dark: #185575;
   --color-grey-dark: #57452f;
+  --color-grey-dark-2: #6d563b;
   --color-grey-light-1: #fbfaf8;
   --color-grey-light-2: #efebe2;
   --color-grey-light-3: #e2dbcd;
@@ -458,10 +459,11 @@ body {
   color: #fff;
   border: none;
   border-radius: 10rem;
-  background: linear-gradient(to right, rgba(var(--color-secondary-light-rgb), 1), rgba(255, 255, 255, 0)), var(--color-secondary);
+  background: linear-gradient(to right, rgba(var(--color-secondary-light-rgb), 1), rgba(var(--color-secondary-rgb), 1));
   width: 90%;
   padding: 1rem 0;
   box-shadow: var(--shadow-primary);
+  cursor: pointer;
   transition: all 0.2s;
 }
 @media only screen and (min-width: 43.75em) {
@@ -472,6 +474,9 @@ body {
 .search__btn:focus {
   outline: none;
   transform: translateY(0.5rem);
+}
+.search__btn:hover {
+  background: linear-gradient(to left, rgba(var(--color-secondary-light-rgb), 1), rgba(var(--color-secondary-rgb), 1));
 }
 
 .featured {
@@ -585,13 +590,19 @@ body {
   border-radius: 0;
   background-color: transparent;
   height: 2rem;
+  cursor: pointer;
+  transform: scale(1);
 }
 .recipe__like-btn:focus {
   outline: none;
 }
+.recipe__like-btn:hover {
+  transform: scale(1.1);
+}
 .recipe__heart-icon {
   height: 2rem;
   width: 2rem;
+  transition: all 0.2s;
 }
 .recipe__description {
   font-size: 1rem;
@@ -720,11 +731,15 @@ body {
   padding: 1rem 0;
   display: flex;
   justify-content: center;
+  align-items: stretch;
 }
 @media only screen and (min-width: 43.75em) {
   .footer-nav__item {
     margin: 1vw 2vw;
   }
+}
+.footer-nav__item:hover {
+  background-color: var(--color-grey-dark-2);
 }
 .footer-nav__link:link, .footer-nav__link:visited {
   display: flex;
@@ -912,6 +927,8 @@ body {
   color: var(--color-grey-light-1);
   padding: 1rem;
   letter-spacing: 0.1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -928,6 +945,13 @@ body {
     font-size: 1.4rem;
     padding: 1.5rem 2rem;
   }
+}
+.show__social__btn:focus {
+  outline: none;
+  transform: translateY(0.2rem);
+}
+.show__social__btn:hover {
+  background: linear-gradient(to bottom left, rgba(var(--color-secondary-light-rgb), 0.8), rgba(var(--color-secondary-rgb), 1));
 }
 .show__social-icon {
   width: 1.5rem;
@@ -955,6 +979,7 @@ body {
 @media only screen and (min-width: 62.5em) {
   .show .show__instructions, .show .show__ingredients, .show .show__nutrition, .show .show__time, .show .show__description {
     font-size: 1.6rem;
+    padding: 3rem 4rem;
   }
 }
 .show__description {
@@ -1031,6 +1056,18 @@ body {
   display: flex;
   flex-direction: column;
 }
+@media only screen and (min-width: 75em) {
+  .show__ingredients-heading {
+    grid-column: 1/-1;
+  }
+}
+@media only screen and (min-width: 43.75em) {
+  .show__ingredients-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+}
 .show__ingredients-item {
   padding: 1rem 0;
   display: flex;
@@ -1072,6 +1109,7 @@ body {
   font-family: var(--font-primary);
   color: var(--color-grey-dark);
   letter-spacing: 0.1rem;
+  cursor: pointer;
 }
 @media only screen and (min-width: 62.5em) {
   .show__instructions-btn {
@@ -1092,6 +1130,9 @@ body {
     height: 2rem;
     width: 2rem;
   }
+}
+.show__instructions-btn-icon:hover {
+  fill: var(--color-grey-dark-2);
 }
 
 .about {
