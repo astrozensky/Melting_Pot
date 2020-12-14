@@ -129,6 +129,24 @@ body {
   fill: var(--color-primary);
 }
 
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.color-orange {
+  color: var(--color-primary) !important;
+}
+
+.fill-orange {
+  fill: var(--color-primary) !important;
+}
+
 .alert {
   width: 90%;
   margin: 1.5rem auto;
@@ -322,16 +340,6 @@ body {
   width: 1.5rem;
   margin-right: 1rem;
   fill: var(--color-grey-dark);
-}
-
-.visible {
-  visibility: visible;
-  opacity: 1;
-}
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
 }
 
 .hero {
@@ -914,6 +922,7 @@ body {
   display: flex;
   justify-content: space-around;
   margin-bottom: 1rem;
+  position: relative;
 }
 @media only screen and (min-width: 43.75em) {
   .show__social {
@@ -933,6 +942,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 20vw;
+  position: relative;
 }
 @media only screen and (min-width: 43.75em) {
   .show__social__btn {
@@ -946,7 +956,7 @@ body {
     padding: 1.5rem 2rem;
   }
 }
-.show__social__btn:focus {
+.show__social__btn:active {
   outline: none;
   transform: translateY(0.2rem);
 }
@@ -1133,6 +1143,74 @@ body {
 }
 .show__instructions-btn-icon:hover {
   fill: var(--color-grey-dark-2);
+}
+
+.social-share {
+  position: absolute;
+  bottom: 120%;
+  right: 5%;
+  background-color: var(--color-grey-light-3);
+  box-shadow: var(--shadow-primary);
+  padding: 1.5rem;
+  transition: all 0.2s;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 2rem;
+  column-gap: 1rem;
+}
+.social-share__heading {
+  grid-column: 1/-1;
+  color: var(--color-grey-dark);
+  letter-spacing: 0.1rem;
+  font-size: 1.8rem;
+  grid-row: 1/2;
+  justify-self: center;
+}
+.social-share__platform {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  row-gap: 1rem;
+}
+.social-share__link:link, .social-share__link:visited {
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-share__icon {
+  height: 3rem;
+  width: 3rem;
+  transform: scale(1);
+  transition: all 0.2s;
+}
+.social-share__icon:hover {
+  transform: scale(1.1);
+}
+.social-share__text {
+  font-size: 1.4rem;
+  color: var(--color-grey-dark);
+  letter-spacing: 0.1rem;
+}
+.social-share__close {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  justify-self: end;
+  align-self: start;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  transform: scale(1);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.social-share__close:hover {
+  transform: scale(1.1);
+}
+.social-share__close-icon {
+  height: 2rem;
+  width: 2rem;
+  fill: var(--color-grey-dark);
 }
 
 .about {

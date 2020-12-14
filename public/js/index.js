@@ -10,6 +10,18 @@ function toggleStep() {
   icon.classList.toggle("icon-orange");
 }
 
+function openShare() {
+  const shareDiv = document.querySelector(".social-share");
+  shareDiv.classList.toggle("hidden");
+}
+
+function socialLike() {
+  const likeBtn = document.getElementById("like-btn");
+  const icon = likeBtn.children[0];
+  icon.classList.toggle("fill-orange");
+  likeBtn.classList.toggle("color-orange");
+}
+
 let recipes;
 let offset = 0;
 let resultsPerPage = 12;

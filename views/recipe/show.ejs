@@ -35,24 +35,56 @@
     </p>
   </div>
   <div class="show__social">
-    <button class="show__social__btn">
+    <button class="show__social__btn" id="like-btn" onclick="socialLike()">
       <svg class="show__social-icon">
         <use xlink:href="/img/sprite.svg#icon-thumbs-up"></use>
       </svg>
       Like
     </button>
-    <button class="show__social__btn">
+    <button class="show__social__btn" id="save-btn" onclick="socialSave()">
       <svg class="show__social-icon">
         <use xlink:href="/img/sprite.svg#icon-heart"></use>
       </svg>
       Save
     </button>
-    <button class="show__social__btn">
+    <button class="show__social__btn" onclick="openShare()">
       <svg class="show__social-icon">
         <use xlink:href="/img/sprite.svg#icon-share"></use>
       </svg>
       Share
     </button>
+    <div class="social-share hidden">
+      <h3 class="heading-3 social-share__heading">Share</h3>
+      <div class="social-share__platform">
+        <a href="https://twitter.com/?lang=en" class="social-share__link">
+          <svg class="social-share__icon" style="fill: #1da1f2">
+            <use xlink:href="/img/sprite.svg#icon-twitter-with-circle"></use>
+          </svg>
+        </a>
+        <p class="social-share__text">Twitter</p>
+      </div>
+      <div class="social-share__platform">
+        <a href="https://www.facebook.com/" class="social-share__link">
+          <svg class="social-share__icon" style="fill: #1877f2">
+            <use xlink:href="/img/sprite.svg#icon-facebook1"></use>
+          </svg>
+        </a>
+        <p class="social-share__text">Facebook</p>
+      </div>
+      <div class="social-share__platform">
+        <a href="https://www.reddit.com/" class="social-share__link">
+          <svg class="social-share__icon" style="fill: #ff4500">
+            <use xlink:href="/img/sprite.svg#icon-reddit1"></use>
+          </svg>
+        </a>
+        <p class="social-share__text">Reddit</p>
+      </div>
+      <button class="social-share__close" onclick="openShare()">
+        <svg class="social-share__close-icon">
+          <use xlink:href="/img/sprite.svg#icon-circle-with-cross"></use>
+        </svg>
+      </button>
+    </div>
   </div>
   <div class="show__description">
     <p class="show__description-text"><%- recipe.summary %></p>

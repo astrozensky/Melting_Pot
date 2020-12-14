@@ -25,6 +25,24 @@
   fill: var(--color-primary);
 }
 
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.color-orange {
+  color: var(--color-primary) !important;
+}
+
+.fill-orange {
+  fill: var(--color-primary) !important;
+}
+
 .alert {
   width: 90%;
   margin: 1.5rem auto;
