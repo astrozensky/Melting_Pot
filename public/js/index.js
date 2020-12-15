@@ -73,6 +73,7 @@ function saveRecipe(el) {
     .catch((error) => {
       window.location.replace("/login");
       alert("You need to be logged in to do that");
+      // alert("Error from fetch: ", error);
     });
 }
 

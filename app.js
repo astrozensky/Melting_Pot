@@ -65,6 +65,30 @@ function isLoggedIn(req, res, next) {
   }
 }
 
+function checkIfRecipeSaved(req, res, next) {
+  Recipe.findOne(
+    {
+      id: req.body.id,
+      author: { id: req.user._id, username: req.user.username },
+    },
+    function (err, foundRecipe) {
+      if (err) {
+        console.log("Find one error: ", err);
+      } else {
+        if (foundRecipe === null) {
+          return next();
+        } else {
+          Recipe.deleteOne(foundRecipe, function (err) {
+            if (err) {
+              console.log("Delete err: ", err);
+            }
+          });
+        }
+      }
+    }
+  );
+}
+
 // ==============================
 // Routes
 // ==============================
@@ -74,8 +98,24 @@ app.get("/", (req, res) => {
   res.render("landing");
 });
 
-app.post("/", isLoggedIn, (req, res) => {
-  console.log(req.body.id);
+app.post("/", [isLoggedIn, checkIfRecipeSaved], (req, res) => {
+  const recipeId = req.body.id;
+  const author = {
+    id: req.user._id,
+    username: req.user.username,
+  };
+
+  const newRecipe = new Recipe({ id: recipeId, author: author });
+
+  newRecipe
+    .save()
+    .then((recipe) => {
+      console.log("Recipe saved: ", recipe);
+    })
+    .catch((err) => {
+      console.log("Save error: ", err);
+    });
+  console.log(newRecipe);
 });
 
 // About Route
