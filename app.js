@@ -4,13 +4,13 @@ const express = require("express"),
   passport = require("passport"),
   User = require("./models/user"),
   Recipe = require("./models/recipe"),
-  middleware = require("./middleware"),
   LocalStrategy = require("passport-local"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
   flash = require("connect-flash"),
   fetch = require("node-fetch");
 
+require("dotenv").config();
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -53,6 +53,10 @@ app.use(function (req, res, next) {
   res.locals.success = req.flash("success");
   next();
 });
+
+// ==============================
+// Middleware
+// ==============================
 
 function isLoggedIn(req, res, next) {
   if (req.user) {
@@ -98,6 +102,7 @@ app.get("/", (req, res) => {
   res.render("landing");
 });
 
+// Save recipe to profile
 app.post("/", [isLoggedIn, checkIfRecipeSaved], (req, res) => {
   const recipeId = req.body.id;
   const recipeTitle = req.body.title;

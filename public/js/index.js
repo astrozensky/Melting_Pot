@@ -1,5 +1,15 @@
 "use strict";
 
+let recipes;
+let featuredRecipes;
+let offset = 0;
+let resultsPerPage = 12;
+let counter = 0;
+const searchBtn = document.querySelector(".search__btn");
+const paginationDiv = document.querySelector(".pagination");
+let cuisineCategory = "";
+let searchString = "";
+
 function toggleNav() {
   const mobileNav = document.querySelector(".mobile-nav");
   mobileNav.classList.toggle("hidden");
@@ -87,59 +97,13 @@ function saveRecipe(el) {
     })
     .catch((error) => {
       console.log("Save recipe fetch error: ", error);
-      // window.location.replace("/login");
-      // alert("You need to be logged in to do that");
+      window.location.replace("/login");
+      alert("You need to be logged in to do that");
       // alert("Error from fetch: ", error);
     });
 }
 
-let recipes;
-let featuredRecipes;
-let offset = 0;
-let resultsPerPage = 12;
-let counter = 0;
-const searchBtn = document.querySelector(".search__btn");
-const paginationDiv = document.querySelector(".pagination");
-let cuisineCategory = "";
-let searchString = "";
-
-document.addEventListener("DOMContentLoaded", function () {
-  if (sessionStorage.getItem("resultsJSON") === true) {
-    recipes = JSON.parse(sessionStorage.getItem("resultsJSON"));
-    displayPaginationControls();
-    populateSearchResults(recipes, "Results");
-    if (counter === 0) {
-      addPaginationListeners();
-      counter++;
-    }
-  } else {
-    init();
-  }
-
-  // Search button listener
-  searchBtn.addEventListener("click", function () {
-    cuisineCategory = document.querySelector(".search__category").value;
-    searchString = document.querySelector(".search__main").value;
-
-    callRecipeApi(0, resultsPerPage, searchString, cuisineCategory);
-  });
-
-  // Like button listeners
-  const heartBtns = document.querySelectorAll(".recipe__like-btn");
-
-  for (let i = 0; i < heartBtns.length; i++) {
-    heartBtns[i].addEventListener("click", function () {
-      this.querySelector("svg").classList.toggle("like");
-    });
-  }
-});
-
-const callRecipeApi = function (
-  offset,
-  resultsPerPage,
-  query,
-  cuisineCategory
-) {
+function callRecipeApi(offset, resultsPerPage, query, cuisineCategory) {
   let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&query=${query}&offset=${offset}&number=${resultsPerPage}&cuisine=${cuisineCategory}`;
   fetch(url)
     .then((response) => {
@@ -154,13 +118,13 @@ const callRecipeApi = function (
         counter++;
       }
     });
-};
+}
 
-const displayPaginationControls = function () {
+function displayPaginationControls() {
   paginationDiv.classList.remove("hidden");
-};
+}
 
-const addPaginationListeners = function () {
+function addPaginationListeners() {
   // Pagination Buttons
   const startBtn = document.getElementById("btn-start");
   const prevBtn = document.getElementById("btn-prev");
@@ -191,9 +155,9 @@ const addPaginationListeners = function () {
     offset = recipes.totalResults - resultsPerPage;
     callRecipeApi(offset, resultsPerPage, searchString, cuisineCategory);
   });
-};
+}
 
-const populateSearchResults = function (searchResults, heading) {
+function populateSearchResults(searchResults, heading) {
   const recipesJSON = JSON.stringify(recipes);
   sessionStorage.setItem("resultsJSON", recipesJSON);
 
@@ -278,4 +242,35 @@ const populateSearchResults = function (searchResults, heading) {
       featured.insertBefore(divRecipeCard, paginationDiv);
     }
   }
-};
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (sessionStorage.getItem("resultsJSON") === true) {
+    recipes = JSON.parse(sessionStorage.getItem("resultsJSON"));
+    displayPaginationControls();
+    populateSearchResults(recipes, "Results");
+    if (counter === 0) {
+      addPaginationListeners();
+      counter++;
+    }
+  } else {
+    init();
+  }
+
+  // Search button listener
+  searchBtn.addEventListener("click", function () {
+    cuisineCategory = document.querySelector(".search__category").value;
+    searchString = document.querySelector(".search__main").value;
+
+    callRecipeApi(0, resultsPerPage, searchString, cuisineCategory);
+  });
+
+  // Like button listeners
+  const heartBtns = document.querySelectorAll(".recipe__like-btn");
+
+  for (let i = 0; i < heartBtns.length; i++) {
+    heartBtns[i].addEventListener("click", function () {
+      this.querySelector("svg").classList.toggle("like");
+    });
+  }
+});
