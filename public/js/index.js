@@ -22,6 +22,33 @@ function socialLike() {
   likeBtn.classList.toggle("color-orange");
 }
 
+function init() {
+  const featuredCuisine = [
+    "African",
+    "Cajun",
+    "Chinese",
+    "European",
+    "Indian",
+    "Japanese",
+    "Korean",
+    "Mediterranean",
+    "Middle Eastern",
+    "Southern",
+    "Spanish",
+    "Thai",
+  ];
+  const randomNum = Math.trunc(Math.random() * 12) + 1;
+  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&offset=0&number=6&cuisine=${featuredCuisine[randomNum]}`;
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      recipes = data;
+      populateSearchResults(data, "Featured");
+    });
+}
+
 let recipes;
 let offset = 0;
 let resultsPerPage = 12;
@@ -32,6 +59,8 @@ let cuisineCategory = "";
 let searchString = "";
 
 document.addEventListener("DOMContentLoaded", function () {
+  init();
+
   // Search button listener
   searchBtn.addEventListener("click", function () {
     cuisineCategory = document.querySelector(".search__category").value;
@@ -63,7 +92,7 @@ const callRecipeApi = function (
     })
     .then((data) => {
       recipes = data;
-      populateSearchResults(data);
+      populateSearchResults(data, "Results");
       if (counter === 0) {
         displayPaginationControls();
         addPaginationListeners();
@@ -109,14 +138,14 @@ const addPaginationListeners = function () {
   });
 };
 
-const populateSearchResults = function (searchResults) {
+const populateSearchResults = function (searchResults, heading) {
   const featured = document.querySelector(".featured");
   const featuredHeading = document.querySelector(".featured__heading");
   const recipeCards = document.querySelectorAll(".recipe__card");
   const accentLine = document.createElement("span");
   accentLine.classList.add("accent-line");
 
-  featuredHeading.textContent = "Results";
+  featuredHeading.textContent = heading;
   featuredHeading.appendChild(accentLine);
 
   for (let i = 0; i < recipeCards.length; i++) {

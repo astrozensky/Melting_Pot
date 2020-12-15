@@ -166,8 +166,8 @@
       Instructions <span class="accent-line-orange"></span>
     </h2>
     <ul class="show__instructions-list">
-      <% for(let i = 0; i < recipe.analyzedInstructions[0].steps.length; i++) {
-      %>
+      <% if(recipe.analyzedInstructions.length >= 1) { %> <% for(let i = 0; i <
+      recipe.analyzedInstructions[0].steps.length; i++) { %>
       <li class="show__instructions-item">
         <button class="show__instructions-btn" onclick="toggleStep()">
           <svg class="show__instructions-btn-icon">
@@ -177,6 +177,18 @@
         </button>
         <p class="show__instructions-step">
           <%= recipe.analyzedInstructions[0].steps[i].step %>
+        </p>
+      </li>
+      <% } %> <% } else { %>
+      <li class="show__instructions-item">
+        <p class="show__instructions-step">
+          Find instructions here:
+          <a
+            href="<%= recipe.sourceUrl %>"
+            class="show__instructions-step"
+            style="color: #57452f"
+            ><%= recipe.sourceName %></a
+          >
         </p>
       </li>
       <% } %>

@@ -239,6 +239,13 @@
   &__time {
     @extend %recipe-info;
     font-size: 1.2rem;
+    // background-image: linear-gradient(
+    //     rgba(var(--color-light-grey-3), 0.4),
+    //     rgba(var(--color-light-grey-3), 0.4)
+    //   ),
+    //   url(/img/clock.png);
+    // background-position: right;
+    // background-size: contain;
 
     @media only screen and (min-width: $bp-small) {
       grid-column: 1 / 2;
@@ -252,6 +259,13 @@
   &__nutrition {
     @extend %recipe-info;
     font-size: 1.2rem;
+    // background-image: linear-gradient(
+    //     rgba(var(--color-light-grey-3), 0.4),
+    //     rgba(var(--color-light-grey-3), 0.4)
+    //   ),
+    //   url(/img/forbidden-eating.png);
+    // background-position: right;
+    // background-size: contain;
 
     @media only screen and (min-width: $bp-small) {
       grid-column: 2 / 3;
