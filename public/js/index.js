@@ -54,7 +54,16 @@ function init() {
 }
 
 function saveRecipe(el) {
-  const data = { id: el.dataset.id };
+  if (el.id === "save-btn") {
+    const icon = el.children[0];
+    icon.classList.toggle("fill-orange");
+    el.classList.toggle("color-orange");
+  }
+  const data = {
+    id: el.dataset.id,
+    title: el.dataset.title,
+    image: el.dataset.image,
+  };
   console.log(data);
 
   fetch("/", {
@@ -71,10 +80,29 @@ function saveRecipe(el) {
       console.log("Success:", data);
     })
     .catch((error) => {
-      window.location.replace("/login");
-      alert("You need to be logged in to do that");
+      console.log("Save recipe fetch error: ", error);
+      // window.location.replace("/login");
+      // alert("You need to be logged in to do that");
       // alert("Error from fetch: ", error);
     });
+}
+
+function deleteRecipe(el) {
+  const data = {
+    id: el.dataset.id,
+    title: el.dataset.title,
+    image: el.dataset.image,
+  };
+  fetch("/", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then((response) => {
+    window.location.reload(true);
+    return response.json;
+  });
 }
 
 let recipes;
@@ -229,6 +257,8 @@ const populateSearchResults = function (searchResults, heading) {
       const likeBtn = document.createElement("button");
       likeBtn.classList.add("recipe__like-btn");
       likeBtn.dataset.id = searchResults.results[i].id;
+      likeBtn.dataset.title = searchResults.results[i].title;
+      likeBtn.dataset.image = searchResults.results[i].image;
       likeBtn.setAttribute("onclick", "saveRecipe(this)");
 
       const heartIcon = document.createElementNS(

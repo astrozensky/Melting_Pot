@@ -961,6 +961,9 @@ body {
   outline: none;
   transform: translateY(0.2rem);
 }
+.show__social__btn:focus {
+  outline: none;
+}
 .show__social__btn:hover {
   background: linear-gradient(to bottom left, rgba(var(--color-secondary-light-rgb), 0.8), rgba(var(--color-secondary-rgb), 1));
 }
@@ -1153,6 +1156,7 @@ body {
   background-color: var(--color-grey-light-3);
   box-shadow: var(--shadow-primary);
   padding: 1.5rem;
+  border-radius: 1rem;
   transition: all 0.2s;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

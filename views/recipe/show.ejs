@@ -41,7 +41,14 @@
       </svg>
       Like
     </button>
-    <button class="show__social__btn" id="save-btn" onclick="socialSave()">
+    <button
+      class="show__social__btn"
+      id="save-btn"
+      data-id="<%= recipe.id %>"
+      data-title="<%= recipe.title %>"
+      data-image="<%= recipe.image %>"
+      onclick="saveRecipe(this)"
+    >
       <svg class="show__social-icon">
         <use xlink:href="/img/sprite.svg#icon-heart"></use>
       </svg>

@@ -100,12 +100,19 @@ app.get("/", (req, res) => {
 
 app.post("/", [isLoggedIn, checkIfRecipeSaved], (req, res) => {
   const recipeId = req.body.id;
+  const recipeTitle = req.body.title;
+  const recipeImage = req.body.image;
   const author = {
     id: req.user._id,
     username: req.user.username,
   };
 
-  const newRecipe = new Recipe({ id: recipeId, author: author });
+  const newRecipe = new Recipe({
+    id: recipeId,
+    title: recipeTitle,
+    image: recipeImage,
+    author: author,
+  });
 
   newRecipe
     .save()
@@ -168,7 +175,35 @@ app.get("/logout", (req, res) => {
 
 // Profile Route
 app.get("/:id", (req, res) => {
-  res.render("profile");
+  const author = {
+    id: req.user._id,
+    username: req.user.username,
+  };
+
+  Recipe.find({ author: author }, function (err, foundRecipes) {
+    if (err) {
+      console.log("Saved recipe find error: ", err);
+    } else {
+      console.log("Found recipes: ", foundRecipes);
+      res.render("profile", { foundRecipes: foundRecipes });
+    }
+  });
+});
+
+// Profile recipe delete route
+app.delete("/:id", (req, res) => {
+  const recipeId = req.body.deleteBtn;
+  console.log(recipeId);
+
+  Recipe.findOneAndDelete({ id: recipeId }, function (err, deletedRecipe) {
+    if (err) {
+      console.log("Delete recipe error: ", err);
+    } else {
+      console.log("Deleted recipe: ", deletedRecipe);
+      req.flash("success", "Recipe deleted");
+      res.redirect(`/${req.user._id}`);
+    }
+  });
 });
 
 // Recipe Show route

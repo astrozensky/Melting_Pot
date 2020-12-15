@@ -180,6 +180,9 @@
         outline: none;
         transform: translateY(0.2rem);
       }
+      &:focus {
+        outline: none;
+      }
       &:hover {
         background: linear-gradient(
           to bottom left,
@@ -403,6 +406,7 @@
   background-color: var(--color-grey-light-3);
   box-shadow: var(--shadow-primary);
   padding: 1.5rem;
+  border-radius: 1rem;
   transition: all 0.2s;
 
   display: grid;

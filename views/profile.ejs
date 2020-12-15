@@ -1,73 +1,59 @@
 <%- include("partials/header") %>
 
 <section class="profile">
-    <nav class="side-nav">
-        <ul class="side-nav__list">
-            <li class="side-nav__item">
-                <button class="side-nav__btn side-nav__btn-active">Saved Recipes</button>
-            </li>
-        </ul>
-    </nav>
-    <main class="profile__content">
-        <div class="saved-recipes">
-            <div class="recipe__card">
-                <figure class="recipe__img-container">
-                  <img src="img/recipe-test.jpg" alt="Recipe Image" class="recipe__img" />
-                </figure>
-                <div class="recipe__details">
-                  <a href="#" class="heading-4 recipe__name">Recipe name</a>
-                  <p class="recipe__description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar
-                    massa eu lacus bibendum...
-                  </p>
-                </div>
-                <div class="recipe__like">
-                  <button class="recipe__like-btn" onclick="">
-                    <svg class="recipe__heart-icon">
-                      <use xlink:href="img/sprite.svg#icon-heart"></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="recipe__card">
-                <figure class="recipe__img-container">
-                  <img src="img/recipe-test.jpg" alt="Recipe Image" class="recipe__img" />
-                </figure>
-                <div class="recipe__like">
-                  <button class="recipe__like-btn" onclick="">
-                    <svg class="recipe__heart-icon">
-                      <use xlink:href="img/sprite.svg#icon-heart"></use>
-                    </svg>
-                  </button>
-                </div>
-                <div class="recipe__details">
-                  <a href="#" class="heading-4 recipe__name">Recipe name</a>
-                  <p class="recipe__description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar
-                    massa eu lacus bibendum...
-                  </p>
-                </div>
-              </div>
-              <div class="recipe__card">
-                <figure class="recipe__img-container">
-                  <img src="img/recipe-test.jpg" alt="Recipe Image" class="recipe__img" />
-                </figure>
-                <div class="recipe__like">
-                  <button class="recipe__like-btn" onclick="">
-                    <svg class="recipe__heart-icon">
-                      <use xlink:href="img/sprite.svg#icon-heart"></use>
-                    </svg>
-                  </button>
-                </div>
-                <div class="recipe__details">
-                  <a href="#" class="heading-4 recipe__name">Recipe name</a>
-                  <p class="recipe__description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar
-                    massa eu lacus bibendum...
-                  </p>
-                </div>
+  <nav class="side-nav">
+    <ul class="side-nav__list">
+      <li class="side-nav__item">
+        <button class="side-nav__btn side-nav__btn-active">
+          Saved Recipes
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <main class="profile__content">
+    <div class="saved-recipes">
+      <% for(let i = 0; i < foundRecipes.length; i++) { %>
+      <div class="recipe__card">
+        <figure class="recipe__img-container">
+          <img
+            src="<%= foundRecipes[i].image %>"
+            alt="<%= foundRecipes[i].title %>"
+            class="recipe__img"
+          />
+        </figure>
+        <div class="recipe__details">
+          <a
+            href="/recipe/<%= foundRecipes[i].id %>"
+            class="heading-4 recipe__name"
+            ><%= foundRecipes[i].title %></a
+          >
+          <!-- <p class="recipe__description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar
+            massa eu lacus bibendum...
+          </p> -->
         </div>
-    </main>
+        <form
+          method="POST"
+          action="/<%= currentUser._id %>?_method=DELETE"
+          class="recipe__like"
+        >
+          <button
+            class="recipe__like-btn"
+            data-id="<%= foundRecipes[i].id %>"
+            data-title="<%= foundRecipes[i].title %>"
+            data-image="<%= foundRecipes[i].image %>"
+            name="deleteBtn"
+            value="<%= foundRecipes[i].id %>"
+          >
+            <svg class="recipe__heart-icon">
+              <use xlink:href="img/sprite.svg#icon-circle-with-cross"></use>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </main>
 </section>
 
 <%- include("partials/footer") %>
