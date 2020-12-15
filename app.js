@@ -4,6 +4,7 @@ const express = require("express"),
   passport = require("passport"),
   User = require("./models/user"),
   Recipe = require("./models/recipe"),
+  middleware = require("./middleware"),
   LocalStrategy = require("passport-local"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
@@ -11,6 +12,7 @@ const express = require("express"),
   fetch = require("node-fetch");
 
 app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(flash());
@@ -52,6 +54,17 @@ app.use(function (req, res, next) {
   next();
 });
 
+function isLoggedIn(req, res, next) {
+  if (req.user) {
+    console.log("user");
+    return next();
+  } else {
+    console.log("not logged in");
+    req.flash("error", "You need to be logged in to do that");
+    res.redirect("/login");
+  }
+}
+
 // ==============================
 // Routes
 // ==============================
@@ -59,6 +72,10 @@ app.use(function (req, res, next) {
 // Landing Route
 app.get("/", (req, res) => {
   res.render("landing");
+});
+
+app.post("/", isLoggedIn, (req, res) => {
+  console.log(req.body.id);
 });
 
 // About Route

@@ -53,6 +53,29 @@ function init() {
     });
 }
 
+function saveRecipe(el) {
+  const data = { id: el.dataset.id };
+  console.log(data);
+
+  fetch("/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      window.location.replace("/login");
+      alert("You need to be logged in to do that");
+    });
+}
+
 let recipes;
 let featuredRecipes;
 let offset = 0;
@@ -64,7 +87,7 @@ let cuisineCategory = "";
 let searchString = "";
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (sessionStorage.getItem("resultsJSON")) {
+  if (sessionStorage.getItem("resultsJSON") === true) {
     recipes = JSON.parse(sessionStorage.getItem("resultsJSON"));
     displayPaginationControls();
     populateSearchResults(recipes, "Results");
@@ -204,6 +227,8 @@ const populateSearchResults = function (searchResults, heading) {
 
       const likeBtn = document.createElement("button");
       likeBtn.classList.add("recipe__like-btn");
+      likeBtn.dataset.id = searchResults.results[i].id;
+      likeBtn.setAttribute("onclick", "saveRecipe(this)");
 
       const heartIcon = document.createElementNS(
         "http://www.w3.org/2000/svg",
