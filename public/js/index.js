@@ -22,6 +22,10 @@ function socialLike() {
   likeBtn.classList.toggle("color-orange");
 }
 
+function clearSession() {
+  sessionStorage.clear();
+}
+
 function init() {
   const featuredCuisine = [
     "African",
@@ -44,12 +48,13 @@ function init() {
       return response.json();
     })
     .then((data) => {
-      recipes = data;
+      featuredRecipes = data;
       populateSearchResults(data, "Featured");
     });
 }
 
 let recipes;
+let featuredRecipes;
 let offset = 0;
 let resultsPerPage = 12;
 let counter = 0;
@@ -59,7 +64,17 @@ let cuisineCategory = "";
 let searchString = "";
 
 document.addEventListener("DOMContentLoaded", function () {
-  init();
+  if (sessionStorage.getItem("resultsJSON")) {
+    recipes = JSON.parse(sessionStorage.getItem("resultsJSON"));
+    displayPaginationControls();
+    populateSearchResults(recipes, "Results");
+    if (counter === 0) {
+      addPaginationListeners();
+      counter++;
+    }
+  } else {
+    init();
+  }
 
   // Search button listener
   searchBtn.addEventListener("click", function () {
@@ -139,6 +154,9 @@ const addPaginationListeners = function () {
 };
 
 const populateSearchResults = function (searchResults, heading) {
+  const recipesJSON = JSON.stringify(recipes);
+  sessionStorage.setItem("resultsJSON", recipesJSON);
+
   const featured = document.querySelector(".featured");
   const featuredHeading = document.querySelector(".featured__heading");
   const recipeCards = document.querySelectorAll(".recipe__card");
