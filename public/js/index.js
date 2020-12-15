@@ -58,6 +58,12 @@ function saveRecipe(el) {
     const icon = el.children[0];
     icon.classList.toggle("fill-orange");
     el.classList.toggle("color-orange");
+
+    if (el.innerText === "Saved") {
+      el.innerText = "Save";
+    } else {
+      el.innerText = "Saved";
+    }
   }
   const data = {
     id: el.dataset.id,
@@ -85,24 +91,6 @@ function saveRecipe(el) {
       // alert("You need to be logged in to do that");
       // alert("Error from fetch: ", error);
     });
-}
-
-function deleteRecipe(el) {
-  const data = {
-    id: el.dataset.id,
-    title: el.dataset.title,
-    image: el.dataset.image,
-  };
-  fetch("/", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((response) => {
-    window.location.reload(true);
-    return response.json;
-  });
 }
 
 let recipes;

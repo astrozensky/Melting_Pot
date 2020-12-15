@@ -10,6 +10,7 @@
   @media only screen and (min-width: $bp-small) {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 5rem;
+    margin-top: 3rem;
   }
 
   &__heading {

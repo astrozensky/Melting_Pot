@@ -42,17 +42,17 @@
       Like
     </button>
     <button
-      class="show__social__btn"
+      class="show__social__btn <% if(saved){%> color-orange <%}%>"
       id="save-btn"
       data-id="<%= recipe.id %>"
       data-title="<%= recipe.title %>"
       data-image="<%= recipe.image %>"
       onclick="saveRecipe(this)"
     >
-      <svg class="show__social-icon">
+      <svg class="show__social-icon <% if(saved){ %> fill-orange <% } %>">
         <use xlink:href="/img/sprite.svg#icon-heart"></use>
       </svg>
-      Save
+      <% if(saved) { %> Saved <% } else { %> Save <% } %>
     </button>
     <button class="show__social__btn" onclick="openShare()">
       <svg class="show__social-icon">

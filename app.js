@@ -208,6 +208,27 @@ app.delete("/:id", (req, res) => {
 
 // Recipe Show route
 app.get("/recipe/:id", (req, res) => {
+  let saved = false;
+  const author = {
+    id: req.user._id,
+    username: req.user.username,
+  };
+  Recipe.findOne(
+    {
+      id: req.params.id,
+      author: { id: req.user._id, username: req.user.username },
+    },
+    function (err, foundRecipe) {
+      if (err) {
+        console.log("Find one error: ", err);
+      } else {
+        if (foundRecipe !== null) {
+          saved = true;
+        }
+      }
+    }
+  );
+
   let url =
     "https://api.spoonacular.com/recipes/" +
     req.params.id +
@@ -217,7 +238,7 @@ app.get("/recipe/:id", (req, res) => {
   fetch(url, settings)
     .then((res) => res.json())
     .then((json) => {
-      res.render("recipe/show", { recipe: json });
+      res.render("recipe/show", { recipe: json, saved: saved });
     });
 });
 
