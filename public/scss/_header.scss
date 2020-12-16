@@ -51,6 +51,7 @@
     padding: 2rem 1rem;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
     @media only screen and (min-width: $bp-medium) {
       padding: 2rem 1.5rem;
@@ -73,10 +74,6 @@
     color: var(--color-grey-dark);
     font-size: 1.6rem;
     letter-spacing: 0.2rem;
-  }
-
-  &__link:focus &__item {
-    background-color: var(--color-grey-light-3);
   }
 
   &__icon {

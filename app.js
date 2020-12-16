@@ -8,7 +8,9 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
   flash = require("connect-flash"),
-  fetch = require("node-fetch");
+  fetch = require("node-fetch"),
+  session = require("express-session"),
+  MongoDBStore = require("connect-mongo")(session);
 
 require("dotenv").config();
 app.use(express.static(__dirname + "/public"));
@@ -19,9 +21,10 @@ app.use(flash());
 app.set("view engine", "ejs");
 
 // Connect to Database
-const url = process.env.DATABASEURL || "mongodb://localhost:27017/melting_pot";
+const dbURL = process.env.DB_URL;
+const localURL = "mongodb://localhost:27017/melting_pot";
 mongoose
-  .connect(url, {
+  .connect(dbURL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -33,14 +36,24 @@ mongoose
     console.log("Error: " + err.message);
   });
 
-// Passport Configuration
+// Session Configuration
+
+const store = new MongoDBStore({
+  url: dbURL,
+  secret: "The big blue bird bathed all day",
+  touchAfter: 24 * 60 * 60,
+});
+
 app.use(
-  require("express-session")({
+  session({
+    store,
     secret: "The big blue bird bathed all day",
     resave: false,
     saveUninitialized: false,
   })
 );
+
+// Passport Configuration
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));

@@ -237,6 +237,7 @@ body {
   padding: 2rem 1rem;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 @media only screen and (min-width: 50em) {
   .main-nav__item {
@@ -256,9 +257,6 @@ body {
   color: var(--color-grey-dark);
   font-size: 1.6rem;
   letter-spacing: 0.2rem;
-}
-.main-nav__link:focus .main-nav__item {
-  background-color: var(--color-grey-light-3);
 }
 .main-nav__icon {
   height: 1.5rem;
