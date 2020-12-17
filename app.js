@@ -37,17 +37,18 @@ mongoose
   });
 
 // Session Configuration
+const secret = process.env.SECRET || "The big blue bird bathed all day";
 
 const store = new MongoDBStore({
   url: dbURL,
-  secret: "The big blue bird bathed all day",
+  secret,
   touchAfter: 24 * 60 * 60,
 });
 
 app.use(
   session({
     store,
-    secret: "The big blue bird bathed all day",
+    secret,
     resave: false,
     saveUninitialized: false,
   })
@@ -96,6 +97,8 @@ function checkIfRecipeSaved(req, res, next) {
           return next();
         } else {
           Recipe.deleteOne(foundRecipe, function (err) {
+            req.flash("error", "Recipe has been revomed from saved recipes");
+            res.redirect("/");
             if (err) {
               console.log("Delete err: ", err);
             }
@@ -135,12 +138,11 @@ app.post("/", [isLoggedIn, checkIfRecipeSaved], (req, res) => {
   newRecipe
     .save()
     .then((recipe) => {
-      console.log("Recipe saved: ", recipe);
+      res.json(recipe);
     })
     .catch((err) => {
       console.log("Save error: ", err);
     });
-  console.log(newRecipe);
 });
 
 // About Route
@@ -227,35 +229,32 @@ app.delete("/:id", (req, res) => {
 // Recipe Show route
 app.get("/recipe/:id", (req, res) => {
   let saved = false;
-  const author = {
-    id: req.user._id,
-    username: req.user.username,
-  };
-  Recipe.findOne(
-    {
-      id: req.params.id,
-      author: { id: req.user._id, username: req.user.username },
-    },
-    function (err, foundRecipe) {
-      if (err) {
-        console.log("Find one error: ", err);
-      } else {
-        if (foundRecipe !== null) {
-          saved = true;
+  console.log(req.user);
+  if (req.user) {
+    Recipe.findOne(
+      {
+        id: req.params.id,
+        author: { id: req.user._id, username: req.user.username },
+      },
+      function (err, foundRecipe) {
+        if (err) {
+          console.log("Find one error: ", err);
+        } else {
+          if (foundRecipe !== null) {
+            saved = true;
+          }
         }
       }
-    }
-  );
+    );
+  }
 
-  let url =
-    "https://api.spoonacular.com/recipes/" +
-    req.params.id +
-    "/information?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&includeNutrition=false";
+  let url = `https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=69eba1cad9c44ee4ac0e44e3ea0a25ef&includeNutrition=false`;
   let settings = { method: "Get" };
 
   fetch(url, settings)
     .then((res) => res.json())
     .then((json) => {
+      console.log(json);
       res.render("recipe/show", { recipe: json, saved: saved });
     });
 });

@@ -44,16 +44,21 @@
     <button
       class="show__social__btn <% if(saved){%> color-orange <%}%>"
       id="save-btn"
+      onclick="saveRecipe(this)"
       data-id="<%= recipe.id %>"
       data-title="<%= recipe.title %>"
       data-image="<%= recipe.image %>"
-      onclick="saveRecipe(this)"
     >
       <svg class="show__social-icon <% if(saved){ %> fill-orange <% } %>">
         <use xlink:href="/img/sprite.svg#icon-heart"></use>
       </svg>
-      <% if(saved) { %> Saved <% } else { %> Save <% } %>
+      <% if(saved) { %>
+      <p>Saved</p>
+      <% } else { %>
+      <p>Save</p>
+      <% } %>
     </button>
+
     <button class="show__social__btn" onclick="openShare()">
       <svg class="show__social-icon">
         <use xlink:href="/img/sprite.svg#icon-share"></use>
@@ -158,12 +163,26 @@
       Ingredients <span class="accent-line-orange"></span>
     </h2>
     <ul class="show__ingredients-list">
-      <% for(let i = 0; i < recipe.extendedIngredients.length; i++) { %>
+      <% if(recipe.analyzedInstructions.length >= 1) { %> <% for(let i = 0; i <
+      recipe.extendedIngredients.length; i++) { %>
       <li class="show__ingredients-item">
         <svg class="show__ingredients-icon">
           <use xlink:href="/img/sprite.svg#icon-chevron-thin-right"></use>
         </svg>
         <%= recipe.extendedIngredients[i].originalString %>
+      </li>
+      <% } %> <% } else { %>
+      <li class="show__ingredients-item">
+        <svg class="show__ingredients-icon">
+          <use xlink:href="/img/sprite.svg#icon-chevron-thin-right"></use>
+        </svg>
+        Find a list of ingredients here:
+        <a
+          href="<%= recipe.sourceUrl %>"
+          class="show__instructions-step"
+          style="color: #57452f"
+          ><%= recipe.sourceName %></a
+        >
       </li>
       <% } %>
     </ul>

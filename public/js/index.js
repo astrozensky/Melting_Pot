@@ -66,13 +66,14 @@ function init() {
 function saveRecipe(el) {
   if (el.id === "save-btn") {
     const icon = el.children[0];
+    const text = el.children[1];
     icon.classList.toggle("fill-orange");
     el.classList.toggle("color-orange");
 
-    if (el.innerText === "Saved") {
-      el.innerText = "Save";
+    if (text.innerText === "Saved") {
+      text.innerText = "Save";
     } else {
-      el.innerText = "Saved";
+      text.innerText = "Saved";
     }
   }
   const data = {
@@ -98,8 +99,7 @@ function saveRecipe(el) {
     .catch((error) => {
       console.log("Save recipe fetch error: ", error);
       window.location.replace("/login");
-      alert("You need to be logged in to do that");
-      // alert("Error from fetch: ", error);
+      alert("You must be logged in to save a recipe");
     });
 }
 
