@@ -64,9 +64,17 @@ function init() {
 }
 
 function saveRecipe(el) {
+  const success = el.children[1];
+  const deleteSuccess = el.children[2];
+  const data = {
+    id: el.dataset.id,
+    title: el.dataset.title,
+    image: el.dataset.image,
+  };
+
   if (el.id === "save-btn") {
     const icon = el.children[0];
-    const text = el.children[1];
+    const text = el.children[3];
     icon.classList.toggle("fill-orange");
     el.classList.toggle("color-orange");
 
@@ -76,12 +84,6 @@ function saveRecipe(el) {
       text.innerText = "Saved";
     }
   }
-  const data = {
-    id: el.dataset.id,
-    title: el.dataset.title,
-    image: el.dataset.image,
-  };
-  console.log(data);
 
   fetch("/", {
     method: "POST",
@@ -91,15 +93,30 @@ function saveRecipe(el) {
     body: JSON.stringify(data),
   })
     .then((response) => {
+      console.log(response);
+      if (response.redirected) {
+        window.location.replace(response.url);
+        alert("You must be logged in to save a recipe");
+      }
+
       return response.json();
     })
     .then((data) => {
-      console.log("Success:", data);
+      if (data.status === "Recipe deleted") {
+        deleteSuccess.classList.remove("hidden");
+        setTimeout(function () {
+          deleteSuccess.classList.add("hidden");
+        }, 2000);
+      } else {
+        success.classList.remove("hidden");
+        setTimeout(function () {
+          success.classList.add("hidden");
+        }, 2000);
+        console.log("Success:", data);
+      }
     })
     .catch((error) => {
-      console.log("Save recipe fetch error: ", error);
-      window.location.replace("/login");
-      alert("You must be logged in to save a recipe");
+      console.log("Fetch error: ", error);
     });
 }
 
@@ -213,6 +230,15 @@ function populateSearchResults(searchResults, heading) {
       likeBtn.dataset.image = searchResults.results[i].image;
       likeBtn.setAttribute("onclick", "saveRecipe(this)");
 
+      const successText = document.createElement("p");
+      successText.classList.add("recipe__like-success");
+      successText.classList.add("hidden");
+      successText.innerText = "Recipe Saved";
+      const deleteText = document.createElement("p");
+      deleteText.classList.add("recipe__like-success");
+      deleteText.classList.add("hidden");
+      deleteText.innerText = "Recipe Removed";
+
       const heartIcon = document.createElementNS(
         "http://www.w3.org/2000/svg",
         "svg"
@@ -231,6 +257,8 @@ function populateSearchResults(searchResults, heading) {
 
       heartIcon.appendChild(iconLink);
       likeBtn.appendChild(heartIcon);
+      likeBtn.appendChild(successText);
+      likeBtn.appendChild(deleteText);
       likeBtn.addEventListener("click", function () {
         this.querySelector("svg").classList.toggle("like");
       });

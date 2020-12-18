@@ -146,6 +146,24 @@
       grid-column: 2 / 3;
     }
 
+    &-success {
+      position: absolute;
+      top: 110%;
+      width: 15rem;
+      background-color: rgba(var(--color-primary-light-rgb), 0.8);
+      color: var(--color-grey-light-1);
+      font-size: 1.4rem;
+      letter-spacing: 0.1rem;
+      border-radius: 1rem;
+      padding: 1rem;
+      transform: translateY(0.8rem);
+
+      @media only screen and (min-width: $bp-small) {
+        width: 11rem;
+        font-size: 1.2rem;
+      }
+    }
+
     &__btn {
       border: none;
       border-radius: 0.5rem;
