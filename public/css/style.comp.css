@@ -597,6 +597,25 @@ body {
     left: 2rem;
   }
 }
+.recipe__like-success {
+  position: absolute;
+  bottom: 0;
+  left: 160%;
+  width: 15rem;
+  background-color: rgba(var(--color-primary-light-rgb), 0.8);
+  color: var(--color-grey-light-1);
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  transform: translateY(0.8rem);
+}
+@media only screen and (min-width: 43.75em) {
+  .recipe__like-success {
+    width: 11rem;
+    font-size: 1.2rem;
+  }
+}
 .recipe__like-btn {
   border: none;
   border-radius: 0;
@@ -604,6 +623,7 @@ body {
   height: 2rem;
   cursor: pointer;
   transform: scale(1);
+  position: relative;
 }
 .recipe__like-btn:focus {
   outline: none;
@@ -932,6 +952,24 @@ body {
 @media only screen and (min-width: 43.75em) {
   .show__social {
     grid-column: 2/3;
+  }
+}
+.show__social-success {
+  position: absolute;
+  top: 110%;
+  width: 15rem;
+  background-color: rgba(var(--color-primary-light-rgb), 0.8);
+  color: var(--color-grey-light-1);
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  transform: translateY(0.8rem);
+}
+@media only screen and (min-width: 43.75em) {
+  .show__social-success {
+    width: 11rem;
+    font-size: 1.2rem;
   }
 }
 .show__social__btn {
